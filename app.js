@@ -18,15 +18,11 @@
   */
   application.initialise = function () {
 
-   console.log(noobs);
-
      // Add the event listener
      noobs.core.events.addListener('event', function (data) {
         noobs.core.services.logging.debug('Event: type: ' + data.type + ' message: ' + data.message);
      });
  
-     console.log(noobs);
-     
      // Indicate that the platform has started up
      noobs.core.services.caching.set('shnakkydoodle-startup', Date());
  

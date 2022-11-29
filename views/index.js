@@ -39,10 +39,10 @@ module.exports = function (moduleManager) {
         _interfaceManager.app().use(_viewManager.replaceNavigation)
         
         // Register the UI css and js to be used by all backoffice interfaces
-        _interfaceManager.registerSite('/dist', (isModule ? './node_modules/noobsjs' : '.') + '/services/views/dist');
+        _interfaceManager.registerSite('/dist', (isModule ? './node_modules/noobs-core' : '.') + '/views/dist');
         
         // Register the admin views
-        _interfaceManager.registerSite('/administrator', (isModule ? './node_modules/noobsjs' : '.') + '/services/views/administrator')
+        _interfaceManager.registerSite('/administrator', (isModule ? './node_modules/noobs-core' : '.') + '/views/administrator')
 
         // Raise the initalised event
         _viewManager.events.emit('core-viewmanager-initialise', 'success');

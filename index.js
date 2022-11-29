@@ -8,7 +8,7 @@ var events = require('events');
  * Module: noobs-core
  * The noobs.core Framework publishes a number of framewor enablers that allows for the rapid development of a solution
  * @param {object} moduleManager The calling system which the framework will inherit details from existing behavour.
- * @returns {object} noobs.core The noobs.core object
+ * @returns {object} noobs The noobs object
  */
 module.exports = function (moduleManager) {
 
@@ -26,17 +26,16 @@ module.exports = function (moduleManager) {
   noobs.parameters = ((moduleManager.parameters != null) ? moduleManager.parameters : {});
 
   // Determine if we are running as a module
-  moduleManager.parameters['isModule'] = (module.parent.path.indexOf('noobs.core') == -1);
+  moduleManager.parameters['isModule'] = (module.parent.path.indexOf('noobs') == -1);
 
-  // Set the event emitter if it is not defined by the caller object
   noobs.core.events = (moduleManager.events != null ? moduleManager.events : new events.EventEmitter());
 
   /**
    * Method: initialise
    * This function loads all the required dependancies for the project.
    *  - common : Various utilities that can be used across the entire solution
-   *  - services : The services modules expose all the core features
    *  - models : The models module expose common data structures for use by the modules
+   *  - services : The services modules expose all the core features
    *  - routes : The routes module expose the apis available for the noobs framework
    *  - views : The views module exposes any UI for the framework
    */

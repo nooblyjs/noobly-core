@@ -19,30 +19,23 @@ module.exports = function (moduleManager) {
     // Initialise the event emitter
     _viewManager.events = new events.EventEmitter();
 
-    /**
-     * Middleware to replace the navigation text
-     */
-    _viewManager.replaceNavigation = function (req, res, next){
-        //var body = res.body;
-        //console.log(res);
-        //body = body.replace('{navigation}', 'navigation');
-        //res.body = body;
-        next();
-    }
-
     // Initialise the view manager    
     _viewManager.initialise = function () {
 
         // Extract the inverface manager from the parameters and configure
         var _interfaceManager = moduleManager.core.services.interface ? moduleManager.core.services.interface : null;
         _interfaceManager.app().use(express.json())
-        _interfaceManager.app().use(_viewManager.replaceNavigation)
         
         // Register the UI css and js to be used by all backoffice interfaces
         _interfaceManager.registerSite('/dist', (isModule ? './node_modules/noobs-core' : '.') + '/views/dist');
         
         // Register the admin views
         _interfaceManager.registerSite('/administrator', (isModule ? './node_modules/noobs-core' : '.') + '/views/administrator')
+
+        // If we are running as a standalone app then redirect too '/administrator'
+        if (!isModule){
+            _interfaceManager.registerSite('/',  '/views/redirect')   
+        }
 
         // Raise the initalised event
         _viewManager.events.emit('core-viewmanager-initialise', 'success');

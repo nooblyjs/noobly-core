@@ -1,0 +1,640 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "The noobsjs Server API's",
+    "description": "This project ecapsulates all the api methods for the noobsjs server"
+  },
+  "basePath": "/administrator/",
+  "tags": [
+    {
+      "name": "Logging",
+      "description": "Logging Controller"
+    },
+    {
+      "name": "Caching",
+      "description": "Caching Controller"
+    },
+    {
+      "name": "Queueing",
+      "description": "Queueing Controller"
+    },
+    {
+      "name": "Files",
+      "description": "Files Controller"
+    },
+    {
+      "name": "Scheduling",
+      "description": "Scheduling Controller"
+    },
+    {
+      "name": "Searching",
+      "description": "Searching Controller"
+    },
+    {
+      "name": "Security",
+      "description": "Security Controller"
+    },
+     {
+      "name": "Worker",
+      "description": "Worker Controller"
+    },
+    {
+      "name": "Workflow",
+      "description": "Workflow Controller"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "paths": {
+    "/logging/api/info/": {
+      "post": {
+        "tags": [
+          "Logging"
+        ],
+        "summary": "log a message of type INFO",
+        "description": "log a message of type INFO",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Add the information you want to log",
+            "required": true,
+            "type": "string",
+            "default": "This is an INFO message",
+            "schema": {
+              "$ref": "#/definitions/logging"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/logging"
+            }
+          }
+        }
+      }
+    },
+    "/logging/api/warn": {
+      "post": {
+        "tags": [
+          "Logging"
+        ],
+        "summary": "log a message of type WARNING",
+        "description": "log a message of type WARNING",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Add the information you want to log",
+            "schema": {
+              "$ref": "#/definitions/logging"
+            }
+          }
+        ],
+        "produces": [
+          "application/text"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/logging"
+            }
+          }
+        }
+      }
+    },
+    "/logging/api/error": {
+      "post": {
+        "tags": [
+          "Logging"
+        ],
+        "summary": "log a message of type ERROR",
+        "description": "log a message of type ERROR",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Add the information you want to log",
+            "schema": {
+              "$ref": "#/definitions/logging"
+            }
+          }
+        ],
+        "produces": [
+          "application/text"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/logging"
+            }
+          }
+        }
+      }
+    },
+    "/caching/api/has/{key}": {
+      "get": {
+        "tags": [
+          "Caching"
+        ],
+        "summary": "Checks if a key exists in the cache",
+        "description": "Checks if a key exists in the cache",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "description": "Add the information you want to log",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "$ref": "#/definitions/logging"
+            }
+          }
+        ],
+        "produces": [
+          "application/text"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/logging"
+            }
+          }
+        }
+      }
+    },
+    "/caching/api/get/{key}": {
+      "get": {
+        "tags": [
+          "Caching"
+        ],
+        "summary": "Returns the cache value for the supplied key",
+        "description": "Returns the cache value for the supplied key",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "description": "Add the information you want to log",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "$ref": "#/definitions/logging"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/logging"
+            }
+          }
+        }
+      }
+    },
+    "/caching/api/set/{key}": {
+      "post": {
+        "tags": [
+          "Caching"
+        ],
+        "summary": "Sets a cache value",
+        "description": "Sets a cache value",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "description": "Add the information you want to log",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "$ref": "#/definitions/caching"
+            }
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Add the information you want to log",
+            "schema": {
+              "$ref": "#/definitions/caching"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/logging"
+            }
+          }
+        }
+      }
+    },
+    "/caching/api/delete/{key}": {
+      "delete": {
+        "tags": [
+          "Caching"
+        ],
+        "summary": "Deletes a cache key",
+        "description": "Deletes a cache key",
+        "parameters": [
+          {
+            "name": "key",
+            "in": "path",
+            "description": "Add the information you want to log",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "$ref": "#/definitions/logging"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/logging"
+            }
+          }
+        }
+      }
+    },
+    "/queueing/api/enqueue/{queue}": {
+      "post": {
+        "tags": [
+          "Queueing"
+        ],
+        "summary": "Enqueue the queue value for the supplied queue",
+        "description": "Enqueue the queue value for the supplied queue",
+        "parameters": [
+          {
+            "name": "queue",
+            "in": "path",
+            "description": "The queue to be dequeued from",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "$ref": "#/definitions/queueing"
+            }
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Add the information you want to queue",
+            "schema": {
+              "$ref": "#/definitions/queueing"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/queueing"
+            }
+          }
+        }
+      }
+    },
+    "/queueing/api/dequeue/{queue}": {
+      "get": {
+        "tags": [
+          "Queueing"
+        ],
+        "summary": "Returns the queue value for the supplied queue",
+        "description": "Returns the queue value for the supplied queue",
+        "parameters": [
+          {
+            "name": "queue",
+            "in": "path",
+            "description": "The queue to be added too",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "$ref": "#/definitions/queueing"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/queueing"
+            }
+          }
+        }
+      }
+    },
+    "/topics/api/subscribe/{topic}/{subscriber}": {
+      "get": {
+        "tags": [
+          "Queueing"
+        ],
+        "summary": "Subscibes a subcriber to the topic",
+        "description": "Subscibes a subcriber to the topic",
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "path",
+            "description": "The topic to be added too",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "$ref": "#/definitions/queueing"
+            }
+          },
+          {
+            "name": "subscriber",
+            "in": "path",
+            "description": "The subscriber to be added too",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "$ref": "#/definitions/queueing"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/queueing"
+            }
+          }
+        }
+      }
+    },
+    "/topics/api/send/{topic}": {
+      "post": {
+        "tags": [
+          "Queueing"
+        ],
+        "summary": "Send a value for the supplied topic",
+        "description": "Send a value for the supplied topice",
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "path",
+            "description": "The topic to be added too",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "$ref": "#/definitions/queueing"
+            }
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Add the information you want to queue",
+            "schema": {
+              "$ref": "#/definitions/queueing"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/queueing"
+            }
+          }
+        }
+      }
+    },
+    "/topics/api/receive/{topic}/{subscriber}": {
+      "get": {
+        "tags": [
+          "Queueing"
+        ],
+        "summary": "Returns the queue value for the supplied queue",
+        "description": "Returns the queue value for the supplied queue",
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "path",
+            "description": "The topic to be added too",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "$ref": "#/definitions/queueing"
+            }
+          },
+          {
+            "name": "subscriber",
+            "in": "path",
+            "description": "The subscriber to be added too",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "$ref": "#/definitions/queueing"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/queueing"
+            }
+          }
+        }
+      }
+    },
+    "/scheduling/api/status": {
+      "get": {
+        "tags": [
+          "Scheduling"
+        ],
+        "summary": "Determines the scheduling status",
+        "description": "Returns a success if the scheduling is working",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/searching/api/status": {
+      "get": {
+        "tags": [
+          "Searching"
+        ],
+        "summary": "Determines the searching status",
+        "description": "Returns a success if the searching is working",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/security/api/status": {
+      "get": {
+        "tags": [
+          "Security"
+        ],
+        "summary": "Determines the security status",
+        "description": "Returns a success if the security is working",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/worker/api/status": {
+      "get": {
+        "tags": [
+          "Worker"
+        ],
+        "summary": "Determines the worker status",
+        "description": "Returns a success if the worker is working",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/workflow/api/status": {
+      "get": {
+        "tags": [
+          "Workflow"
+        ],
+        "summary": "Determines the workflow status",
+        "description": "Returns a success if the workflow is working",
+        "parameters": [],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "api_key"
+    }
+  },
+  "definitions": {
+    "logging": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "type": "string",
+          "uniqueItems": true
+        }
+      }
+    },
+    "caching": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "type": "string",
+          "uniqueItems": true
+        }
+      }
+    },
+    "queueing": {
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "type": "string",
+          "uniqueItems": true
+        }
+      }
+    },
+    "workflow": {
+      "required": [
+        "config"
+      ],
+      "properties": {
+        "data": {
+          "type": "string",
+          "uniqueItems": true
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    }
+  }
+}

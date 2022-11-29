@@ -20,7 +20,7 @@ module.exports = function (moduleManager) {
     _routeManager.initialise = function () {
 
         // Extract the interface manager from the parameters and configure
-        var _interfaceManager = moduleManager.services.interface ? moduleManager.services.interface : null;
+        var _interfaceManager = moduleManager.core.services.interface ? moduleManager.core.services.interface : null;
 
         if (_interfaceManager != null) {
             

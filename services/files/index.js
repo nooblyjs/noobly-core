@@ -31,7 +31,7 @@ module.exports = function (moduleManager) {
     var _serviceManager = {};
 
     // Load the configuration controller
-    var configuration = moduleManager.services.configuration; 
+    var configuration = moduleManager.core.services.configuration; 
 
     // Load the controllers
     _serviceManager.controller = configuration.has('core.files.contoller')? require(configuration.get('core.files.contoller')) : require('./middleware/core')(moduleManager);

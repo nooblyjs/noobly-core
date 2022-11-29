@@ -4,28 +4,24 @@ const events = require('events');
 /**
  * Shopping Module
  */
-module.exports = function (parameters) {
+module.exports = function (moduleManager) {
 
     /** Initiate the object */
     var _modelsManager = {};
 
-    /** local parameters */
-    _modelsManager.parameters = (parameters != null ? parameters : {})
+    // Initialise the view manager    
+    _modelsManager.initialise = function () {
 
-    // Initialise the event emitter
-    _modelsManager.events = new events.EventEmitter();
+        // The Location Model    
+        moduleManager.core.models.location = require('./location')(moduleManager);
 
-    // The Location Model    
-    _modelsManager.location = require('./location')(parameters);
-    parameters['models.location'] = _modelsManager.location;
+        // The Product Model    
+        moduleManager.core.models.product = require('./product')(moduleManager);
 
-    // The Product Model    
-    _modelsManager.product =  require('./product')(parameters);
-    parameters['models.product'] = _modelsManager.product;
+        // The Person Model 
+        moduleManager.core.models.person = require('./person')(moduleManager);
 
-    // The Person Model 
-    _modelsManager.person =  require('./person')(parameters);
-    parameters['models.person'] = _modelsManager.person;
+    }();
 
     return _modelsManager;
 };

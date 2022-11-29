@@ -17,13 +17,13 @@ module.exports = function (moduleManager) {
   noobs.core = ((noobs.core != null) ? noobs.core : {});
   noobs.core.common = ((noobs.core.common != null) ? noobs.core.common : {});
   noobs.core.models = ((noobs.core.models != null) ? noobs.core.models : []);
-  noobs.core.routes = ((noobs.core.routes != null) ? noobs.core.routes : []);
+  noobs.core.routes = ((noobs.core.routes != null) ? noobs.core.routes : {});
   noobs.core.services = ((noobs.core.services != null) ? noobs.core.services : {});
-  noobs.core.views = ((noobs.core.views != null) ? noobs.core.views : []);
+  noobs.core.views = ((noobs.core.views != null) ? noobs.core.views : {});
   noobs.core.middleware = [];
 
   // Set the parameters object from the parent object else create one
-  noobs.core.parameters = ((moduleManager.parameters != null) ? moduleManager.parameters : {});
+  noobs.parameters = ((moduleManager.parameters != null) ? moduleManager.parameters : {});
 
   // Determine if we are running as a module
   moduleManager.parameters['isModule'] = (module.parent.path.indexOf('noobs.core') == -1);
@@ -40,24 +40,24 @@ module.exports = function (moduleManager) {
    *  - routes : The routes module expose the apis available for the noobs framework
    *  - views : The views module exposes any UI for the framework
    */
-   moduleManager.initialise = function () {
+   noobs.initialise = function () {
 
     // Load the common module
-    require('./common')(noobs.core);
+    require('./common')(noobs);
 
     // Load the models module
-    require('./models')(noobs.core);
-
-    // Load the models module
-    require('./routes')(noobs.core);
+    require('./models')(noobs);
 
     // Load the services module
-    require('./services')(noobs.core);
+    require('./services')(noobs);
 
     // Load the models module
-    require('./views')(noobs.core);
+    require('./routes')(noobs);
+
+    // Load the models module
+    require('./views')(noobs);
 
   }();
 
-  return moduleManager;
+  return noobs;
 }

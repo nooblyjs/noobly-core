@@ -13,7 +13,7 @@ module.exports = function (moduleManager) {
     var _serviceManager = {};
 
     /** Assign the default controller */
-    _serviceManager.middleware = 'middleware' in moduleManager.parameters ? moduleManager.parameters['middleware'](moduleManager) : require('./middleware/core')(moduleManager);
+    _serviceManager.middleware = require('./middleware/core')(moduleManager);
 
     // Initialise the event emitter
     _serviceManager.events = new events.EventEmitter();

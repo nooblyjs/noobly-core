@@ -22,7 +22,7 @@ module.exports = function (moduleManager) {
     _serviceManager.middleware = [];
 
     // Load the configuration controller
-    var configuration = moduleManager.services.configuration;
+    var configuration = moduleManager.core.services.configuration;
 
     /**
      * Method : RaiseEvent
@@ -31,7 +31,7 @@ module.exports = function (moduleManager) {
      * @param {object} options
     */
     _serviceManager.raiseEvent = function (name, options) {
-        moduleManager.common.middleware.retrieve(_serviceManager, 'raiseEvent').forEach(function (item, index) {
+        moduleManager.core.common.middleware.retrieve(_serviceManager, 'raiseEvent').forEach(function (item, index) {
             item.raiseEvent(name, options);
         });
     }
@@ -47,7 +47,7 @@ module.exports = function (moduleManager) {
      */
     _serviceManager.createWorker = function (worker, payload, callback, messageCallback, errorCallback, exitCallback) {
         _serviceManager.raiseEvent('event', { type: 'worker-create', message: 'worker: ' + worker + ' created ',options: {worker, payload}});
-        moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createWorker').createWorker(worker, payload, callback, messageCallback, errorCallback, exitCallback);
+        moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createWorker').createWorker(worker, payload, callback, messageCallback, errorCallback, exitCallback);
     }
 
      /**
@@ -56,7 +56,7 @@ module.exports = function (moduleManager) {
      */
     _serviceManager.retrieveWorker = function (workerid) {
         _serviceManager.raiseEvent('event', { type: 'worker-retrieve', message: 'worker: ' + worker + ' created ', options: {worker, payload}});
-        moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createWorker').createWorker(worker, payload, messageCallback, errorCallback, exitCallback)
+        moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createWorker').createWorker(worker, payload, messageCallback, errorCallback, exitCallback)
     }
 
     /**
@@ -65,10 +65,10 @@ module.exports = function (moduleManager) {
     _serviceManager.initialise = function () {
 
         // Use the default middleware
-        moduleManager.common.middleware.use(_serviceManager, configuration != null && configuration.has('core.worker.contoller') ? require(configuration.get('core.worker.contoller')) : require('./middleware/core')(moduleManager))
+        moduleManager.core.common.middleware.use(_serviceManager, configuration != null && configuration.has('core.worker.contoller') ? require(configuration.get('core.worker.contoller')) : require('./middleware/core')(moduleManager))
 
         // Use the default event manager
-        moduleManager.common.middleware.use(_serviceManager, require('../../common/middleware/events-middleware/events')(moduleManager));
+        moduleManager.core.common.middleware.use(_serviceManager, require('../../common/middleware/events-middleware/events')(moduleManager));
 
         // Load the model manager
         _serviceManager.modelManager = require('./models')(moduleManager)

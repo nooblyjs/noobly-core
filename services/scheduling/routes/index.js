@@ -14,7 +14,7 @@ module.exports = function (serviceManager) {
 
     // Initialise the view manager    
     _routeManager.initialise = function () {
-        var _interfaceManager = serviceManager.services.interface ? serviceManager.services.interface : null;
+        var _interfaceManager = serviceManager.core.services.interface ? serviceManager.core.services.interface : null;
 
         if (_interfaceManager != null) {
 

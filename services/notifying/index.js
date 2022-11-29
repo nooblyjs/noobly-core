@@ -10,7 +10,7 @@ module.exports = function (moduleManager) {
     var _serviceManager = {};
 
     // Load the configuration controller
-    var configuration = moduleManager.services.configuration;
+    var configuration = moduleManager.core.services.configuration;
 
     // Load the controllers
     _serviceManager.controller = configuration.has('core.caching.contoller') ? require(configuration.get('core.caching.contoller')) : require('./middleware/core')(moduleManager);

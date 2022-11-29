@@ -12,7 +12,7 @@ module.exports = function (moduleManager) {
     _serviceManager.middleware = [];
 
     // Load the configuration controller
-    var configuration = moduleManager.services.configuration;
+    var configuration = moduleManager.core.services.configuration;
 
     /**
      * Method : RaiseEvent
@@ -21,7 +21,7 @@ module.exports = function (moduleManager) {
      * @param {object} options
     */
     _serviceManager.raiseEvent = function (name, options) {
-        moduleManager.common.middleware.retrieve(_serviceManager, 'raiseEvent').forEach(function (item, index) {
+        moduleManager.core.common.middleware.retrieve(_serviceManager, 'raiseEvent').forEach(function (item, index) {
             item.raiseEvent(name, options);
         });
     }
@@ -35,11 +35,11 @@ module.exports = function (moduleManager) {
     _serviceManager.updateIndex = function (index, data, callback) {
         _serviceManager.raiseEvent('event', { type: 'update-index', message: 'search: Index: ' + index  + ' updated ', options: { index } });
         if (callback != null) {
-            moduleManager.common.middleware.retrieveFirst(_serviceManager, 'updateIndex').updateIndex(index, data, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'updateIndex').updateIndex(index, data, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    moduleManager.common.middleware.retrieveFirst(_serviceManager, 'updateIndex').updateIndex(index, data, function (success) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'updateIndex').updateIndex(index, data, function (success) {
                         resolve(success);
                     })
                 });
@@ -55,11 +55,11 @@ module.exports = function (moduleManager) {
     _serviceManager.deleteIndex = function (index, searchString, callback) {
         _serviceManager.raiseEvent('event', { type: 'delete-index', message: 'search: Index: ' + index + ' ' + searchString + ' executed ', options: { index } });
         if (callback != null) {
-            moduleManager.common.middleware.retrieveFirst(_serviceManager, 'updateIndex').deleteIndex(index, searchString, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'updateIndex').deleteIndex(index, searchString, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    moduleManager.common.middleware.retrieveFirst(_serviceManager, 'updateIndex').deleteIndex(index, searchString, function (success) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'updateIndex').deleteIndex(index, searchString, function (success) {
                         resolve(success);
                     })
                 });
@@ -75,11 +75,11 @@ module.exports = function (moduleManager) {
     _serviceManager.searchIndex = function (index, searchString, callback) {
         _serviceManager.raiseEvent('event', { type: 'search', message: 'search: Index: ' + index + ' ' + searchString + ' executed ', options: { index } });
         if (callback != null) {
-            moduleManager.common.middleware.retrieveFirst(_serviceManager, 'updateIndex').searchIndex(index, searchString, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'updateIndex').searchIndex(index, searchString, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    moduleManager.common.middleware.retrieveFirst(_serviceManager, 'updateIndex').searchIndex(index, searchString, function (success) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'updateIndex').searchIndex(index, searchString, function (success) {
                         resolve(success);
                     })
                 });
@@ -92,10 +92,10 @@ module.exports = function (moduleManager) {
     _serviceManager.initialise = function () {
 
         // Use the default middleware
-        moduleManager.common.middleware.use(_serviceManager, configuration != null && configuration.has('core.searching.contoller') ? require(configuration.get('core.searching.contoller')) : require('./middleware/core')(moduleManager))
+        moduleManager.core.common.middleware.use(_serviceManager, configuration != null && configuration.has('core.searching.contoller') ? require(configuration.get('core.searching.contoller')) : require('./middleware/core')(moduleManager))
 
         // Use the default event manager
-        moduleManager.common.middleware.use(_serviceManager, require('../../common/middleware/events-middleware/events')(moduleManager));
+        moduleManager.core.common.middleware.use(_serviceManager, require('../../common/middleware/events-middleware/events')(moduleManager));
 
         // Load the model manager
         _serviceManager.modelManager = require('./models')(moduleManager)

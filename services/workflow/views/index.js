@@ -20,7 +20,7 @@ module.exports = function (moduleManager) {
     _viewManager.initialise = function () {
 
         // Extract the inverface manager from the parameters and configure
-        var _interfaceManager = moduleManager.services.interface ? moduleManager.services.interface : null;
+        var _interfaceManager = moduleManager.core.services.interface ? moduleManager.core.services.interface : null;
         
         // if there is an interface manager passed then add it
         if (_interfaceManager != null) {

@@ -34,13 +34,13 @@ module.exports = function (moduleManager) {
     _commonManager.initialise = function () {
 
         // The middleware utility
-        moduleManager.common.middleware = (( moduleManager.common.middleware != null) ?  moduleManager.common.middleware : require('./middleware/')(moduleManager));
+        moduleManager.core.common.middleware = (( moduleManager.core.common.middleware != null) ?  moduleManager.core.common.middleware : require('./middleware/')(moduleManager));
 
         // The modules utility
-        moduleManager.common.modules = (( moduleManager.common.modules != null) ?  moduleManager.common.modules : require('./modules/')(moduleManager));
+        moduleManager.core.common.modules = (( moduleManager.core.common.modules != null) ?  moduleManager.core.common.modules : require('./modules/')(moduleManager));
 
         // The schema utility
-        moduleManager.common.schema = (( moduleManager.common.schema != null) ?  moduleManager.common.schema : require('./schema/'));
+        moduleManager.core.common.schema = (( moduleManager.core.common.schema != null) ?  moduleManager.core.common.schema : require('./schema/'));
 
     }()
 

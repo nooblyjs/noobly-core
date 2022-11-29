@@ -12,7 +12,7 @@ var events = require('events');
 
     // Instantiate the modulemanager
     var moduleManager = {}
-    moduleManager.services = {};
+    moduleManager.core.services = {};
     moduleManager.parameters = {};
     moduleManager.events = new events.EventEmitter()
     moduleManager.parameters['datafolder'] = './customdata';
@@ -56,7 +56,7 @@ var events = require('events');
 
 
     var moduleManager = {}
-    moduleManager.services = {};
+    moduleManager.core.services = {};
     moduleManager.parameters = {};
     moduleManager.events = new events.EventEmitter()
     moduleManager.parameters['datafolder'] = './customdata';

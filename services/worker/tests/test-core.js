@@ -10,8 +10,8 @@ const events = require('events');
     console.log('========================================================================')
 
     var moduleManager = {}
-    moduleManager.services = {};
-    moduleManager.common = {};
+    moduleManager.core.services = {};
+    moduleManager.core.common = {};
     moduleManager.parameters = {'number': 40};
     moduleManager.events = new events.EventEmitter()
 

@@ -16,7 +16,7 @@ module.exports = function (serviceManager) {
     _controller.projects = {};
 
     // Load the configuration controller
-    var _configurationManager = serviceManager.services.configuration;
+    var _configurationManager = serviceManager.core.services.configuration;
 
     // Create the models
     const plans = require('./models/plans')(serviceManager);

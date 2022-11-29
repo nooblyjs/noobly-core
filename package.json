@@ -15,5 +15,35 @@
   "bugs": {
     "url": "https://github.com/adminnoobsjs/noobs-core/issues"
   },
-  "homepage": "https://github.com/adminnoobsjs/noobs-core#readme"
+  "homepage": "https://github.com/adminnoobsjs/noobs-core#readme",
+  "dependencies": {
+    "@azure/storage-blob": "*",
+    "@google-cloud/storage": "*",
+    "aws-sdk": "*",
+    "config": "^3.3.8",
+    "cors": "*",
+    "depd": "1.1.0",
+    "express": "*",
+    "express-session": "*",
+    "liqe": "*",
+    "lodash": "4.17.21",
+    "memcached": "*",
+    "mongodb": "*",
+    "multer": "*",
+    "mysql": "*",
+    "nedb": "*",
+    "node-schedule": "*",
+    "nodejs-state-machine": "*",
+    "nodemon": "*",
+    "passport": "*",
+    "passport-google-oauth20": "*",
+    "pg": "^8.8.0",
+    "pm2": "*",
+    "redis": "*",
+    "request": "^2.88.2",
+    "sqlite3": "*",
+    "stomp-client": "*",
+    "swagger-ui-express": "*",
+    "terminal-kit": "^3.0.0"
+  }
 }

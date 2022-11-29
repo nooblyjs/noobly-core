@@ -24,7 +24,7 @@ module.exports = function (serviceManager) {
     _routeManager.initialise = function () {
 
         // Extract the app from the parameters and configure
-        var _interfaceManager = serviceManager.services.interface ? serviceManager.services.interface : null;
+        var _interfaceManager = serviceManager.core.services.interface ? serviceManager.core.services.interface : null;
 
         if (_interfaceManager != null) {
             _interfaceManager.app().use(express.json())

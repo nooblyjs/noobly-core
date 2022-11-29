@@ -19,7 +19,7 @@ module.exports = function (moduleManager) {
     var _parameters = moduleManager.parameters != null ? moduleManager.parameters : [];
 
     /** Assign the default provider */
-    _serviceManager.controller = 'provider' in moduleManager.parameters ? moduleManager.parameters['provider'](moduleManager.parameters) : require('./middleware/core')(moduleManager.parameters);
+    _serviceManager.controller = require('./middleware/core')(moduleManager.parameters);
 
     /**
      * Has Property Method

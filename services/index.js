@@ -38,53 +38,47 @@ module.exports = function (moduleManager) {
     _serviceManager.initialise = function () {
 
         // The configuration manager
-        moduleManager.services.configuration = ((moduleManager.services.configuration != null) ? moduleManager.services.configuration : require('./configuration')(moduleManager));
+        moduleManager.core.services.configuration = ((moduleManager.core.services.configuration != null) ? moduleManager.core.services.configuration : require('./configuration')(moduleManager));
 
         // The interface manager
-        moduleManager.services.interface = ((moduleManager.services.interface != null) ? moduleManager.services.interface : require('./interface')(moduleManager));
+        moduleManager.core.services.interface = ((moduleManager.core.services.interface != null) ? moduleManager.core.services.interface : require('./interface')(moduleManager));
 
         // The interface manager
-        moduleManager.services.dataaccess = ((moduleManager.services.dataaccess != null) ? moduleManager.services.dataaccess : require('./dataaccess')(moduleManager));
+        moduleManager.core.services.dataaccess = ((moduleManager.core.services.dataaccess != null) ? moduleManager.core.services.dataaccess : require('./dataaccess')(moduleManager));
 
         // The Logging Manager   
-        moduleManager.services.logging = ((moduleManager.services.logging != null) ? moduleManager.services.logging : require('./logging')(moduleManager));
+        moduleManager.core.services.logging = ((moduleManager.core.services.logging != null) ? moduleManager.core.services.logging : require('./logging')(moduleManager));
 
         // The Caching Manager
-        moduleManager.services.caching = ((moduleManager.services.caching != null) ? moduleManager.services.caching : require('./caching')(moduleManager));
+        moduleManager.core.services.caching = ((moduleManager.core.services.caching != null) ? moduleManager.core.services.caching : require('./caching')(moduleManager));
 
         // The Queueing Manager
-        moduleManager.services.queueing = ((moduleManager.services.queueing != null) ? moduleManager.services.queueing : require('./queueing')(moduleManager));
+        moduleManager.core.services.queueing = ((moduleManager.core.services.queueing != null) ? moduleManager.core.services.queueing : require('./queueing')(moduleManager));
 
         // The Files Manager
-        moduleManager.services.files = ((moduleManager.services.files != null) ? moduleManager.services.files : require('./files')(moduleManager));
+        moduleManager.core.services.files = ((moduleManager.core.services.files != null) ? moduleManager.core.services.files : require('./files')(moduleManager));
 
         // The Measuring Manager
-        moduleManager.services.measuring = ((moduleManager.services.measuring != null) ? moduleManager.services.measuring : require('./measuring')(moduleManager));
+        moduleManager.core.services.measuring = ((moduleManager.core.services.measuring != null) ? moduleManager.core.services.measuring : require('./measuring')(moduleManager));
 
         // The Notifying Manager
-        moduleManager.services.notifying = ((moduleManager.services.notifying != null) ? moduleManager.services.notifying : require('./notifying')(moduleManager));
+        moduleManager.core.services.notifying = ((moduleManager.core.services.notifying != null) ? moduleManager.core.services.notifying : require('./notifying')(moduleManager));
 
         // The Scheduling Manager
-        moduleManager.services.scheduling = ((moduleManager.services.scheduling != null) ? moduleManager.services.scheduling : require('./scheduling')(moduleManager));
+        moduleManager.core.services.scheduling = ((moduleManager.core.services.scheduling != null) ? moduleManager.core.services.scheduling : require('./scheduling')(moduleManager));
 
         // The Searching Manager
-        moduleManager.services.searching = ((moduleManager.services.searching != null) ? moduleManager.services.searching : require('./searching')(moduleManager));
+        moduleManager.core.services.searching = ((moduleManager.core.services.searching != null) ? moduleManager.core.services.searching : require('./searching')(moduleManager));
 
         // The Security Manager
-        moduleManager.services.security = ((moduleManager.services.security != null) ? moduleManager.services.security : require('./security')(moduleManager));
+        moduleManager.core.services.security = ((moduleManager.core.services.security != null) ? moduleManager.core.services.security : require('./security')(moduleManager));
 
         // The Worker Manager
-        moduleManager.services.worker = ((moduleManager.services.worker != null) ? moduleManager.services.worker : require('./worker')(moduleManager));
+        moduleManager.core.services.worker = ((moduleManager.core.services.worker != null) ? moduleManager.core.services.worker : require('./worker')(moduleManager));
 
         // The Workflow Manager  
-        moduleManager.services.workflow = ((moduleManager.services.workflow != null) ? moduleManager.services.workflow : require('./workflow')(moduleManager));
+        moduleManager.core.services.workflow = ((moduleManager.core.services.workflow != null) ? moduleManager.core.services.workflow : require('./workflow')(moduleManager));
         
-        // Load the route manager
-        _serviceManager.routeManager = require('./routes')(moduleManager)
-
-        // Load the view manager
-        _serviceManager.viewManager = require('./views')(moduleManager)
-
     }()
 
     return _serviceManager;

@@ -10,7 +10,7 @@ const strictEqual = require('assert/strict');
     
     // Lets add some test parameters
     var moduleManager = {}
-    moduleManager.services = {};
+    moduleManager.core.services = {};
     moduleManager.parameters = {'host': '127.0.0.1', 'port':6379, 'controller': './controllers/redis.js'};
 
     // intantiate the cache service

@@ -19,7 +19,7 @@ module.exports = function (serviceManager) {
     _routeManager.initialise = function () {
 
         // Extract the interface manager from the parameters and configure
-        var _interfaceManager = serviceManager.services.interface ? serviceManager.services.interface : null;
+        var _interfaceManager = serviceManager.core.services.interface ? serviceManager.core.services.interface : null;
 
         if (_interfaceManager != null) {
             _interfaceManager.app().use(express.json())
@@ -28,19 +28,19 @@ module.exports = function (serviceManager) {
             _interfaceManager.app().route('/administrator/logging/api/:level').post(function (req, res) {
                 switch (req.params.level.toUpperCase()) {
                     case 'INFO':
-                        serviceManager.services.logging.debug(req.body.data);
+                        serviceManager.core.services.logging.debug(req.body.data);
                         break;
                     case 'INFO':
-                        serviceManager.services.logging.log(req.body.data);
+                        serviceManager.core.services.logging.log(req.body.data);
                         break;
                     case 'WARN':
-                        serviceManager.services.logging.warn(req.body.data);
+                        serviceManager.core.services.logging.warn(req.body.data);
                         break;
                     case 'ERROR':
-                        serviceManager.services.logging.error(req.body.data);
+                        serviceManager.core.services.logging.error(req.body.data);
                         break;
                     default:
-                        serviceManager.services.logging.log(req.body.data);
+                        serviceManager.core.services.logging.log(req.body.data);
                 }
                 res.sendStatus(200);
             });

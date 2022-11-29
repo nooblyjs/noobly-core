@@ -30,7 +30,7 @@ module.exports = function (moduleManager) {
     _serviceManager.middleware = [];
 
     // Load the configuration controller
-    var configuration = moduleManager.services.configuration;
+    var configuration = moduleManager.core.services.configuration;
 
     /**
      * Method : RaiseEvent
@@ -39,7 +39,7 @@ module.exports = function (moduleManager) {
      * @param {object} options : An object holding the specific parameters
     */
     _serviceManager.raiseEvent = function (name, options) {
-        moduleManager.common.middleware.retrieve(_serviceManager, 'raiseEvent').forEach(function (item, index) {
+        moduleManager.core.common.middleware.retrieve(_serviceManager, 'raiseEvent').forEach(function (item, index) {
             item.raiseEvent(name, options);
         });
     }
@@ -53,11 +53,11 @@ module.exports = function (moduleManager) {
     _serviceManager.createPlan = function (plan, config, callback) {
         _serviceManager.raiseEvent('event', { type: 'plan-create', message: 'plan created: ' + plan, options: { plan } });
         if (callback != null) {
-            moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').createPlan(plan, config, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').createPlan(plan, config, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').createPlan(plan, config, function (has) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').createPlan(plan, config, function (has) {
                         resolve(has);
                     })
                 });
@@ -75,11 +75,11 @@ module.exports = function (moduleManager) {
     _serviceManager.createProject = function (project, plan, initalState, parameters, callback) {
         _serviceManager.raiseEvent('event', { type: 'project-create', message: 'project : ' + project + ' created', options: { project, plan, initalState } });
         if (callback) {
-            moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').createProject(project, plan, initalState, parameters, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').createProject(project, plan, initalState, parameters, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').createProject(project, plan, initalState, parameters, function (projectid) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').createProject(project, plan, initalState, parameters, function (projectid) {
                         resolve(projectid);
                     })
                 });
@@ -94,11 +94,11 @@ module.exports = function (moduleManager) {
     _serviceManager.retrieveProjectTransitions = function (project, callback) {
         _serviceManager.raiseEvent('event', { type: 'transitions-retrieve', message: 'project: ' + project + ' retrieve transistions', options: { project } });
         if (callback) {
-            moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').retrieveProjectTransitions(project, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').retrieveProjectTransitions(project, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').retrieveProjectTransitions(project, function (has) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').retrieveProjectTransitions(project, function (has) {
                         resolve(has);
                     })
                 });
@@ -114,11 +114,11 @@ module.exports = function (moduleManager) {
     _serviceManager.candoProjectTransition = function (project, transition, callback) {
         _serviceManager.raiseEvent('event', { type: 'transitions-can', message: 'project: ' + project + ' transition can: ' + transition, project, transition });
         if (callback != null) {
-            moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').candoProjectTransition(project, transition, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').candoProjectTransition(project, transition, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').candoProjectTransition(project, transition, function (has) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').candoProjectTransition(project, transition, function (has) {
                         resolve(has);
                     })
                 });
@@ -134,11 +134,11 @@ module.exports = function (moduleManager) {
     _serviceManager.isProjectState = function (project, state, callback) {
         _serviceManager.raiseEvent('event', { type: 'state-is', message: 'project: ' + project + ' state is : ' + state, project, state });
         if (callback != null) {
-            moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').isProjectState(project, state, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').isProjectState(project, state, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').isProjectState(project, state, function (has) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').isProjectState(project, state, function (has) {
                         resolve(has);
                     })
                 });
@@ -154,11 +154,11 @@ module.exports = function (moduleManager) {
     _serviceManager.doProjectTransition = function (project, transition, callback) {
         _serviceManager.raiseEvent('event', { type: 'transitions-do', message: 'project: ' + project + ' do transition : ' + transition, project, transition });
         if (callback != null) {
-            moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').doProjectTransition(project, transition, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').doProjectTransition(project, transition, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').doProjectTransition(project, transition, function (has) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').doProjectTransition(project, transition, function (has) {
                         resolve(has);
                     })
                 });
@@ -174,11 +174,11 @@ module.exports = function (moduleManager) {
     _serviceManager.resetProjectTransition = function (project, transition, callback) {
         _serviceManager.raiseEvent('event', { type: 'transitions-reset', message: 'project: ' + project + ' do reset : ' + transition, project, transition });
         if (callback != null) {
-            moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').resetProjectTransition(project, transition, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').resetProjectTransition(project, transition, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    moduleManager.common.middleware.retrieveFirst(_serviceManager, 'createPlan').resetProjectTransition(project, transition, function (has) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'createPlan').resetProjectTransition(project, transition, function (has) {
                         resolve(has);
                     })
                 });
@@ -191,10 +191,10 @@ module.exports = function (moduleManager) {
     _serviceManager.initialise = function () {
 
         // Use the default middleware
-        moduleManager.common.middleware.use(_serviceManager, configuration != null && configuration.has('core.workflow.contoller') ? require(configuration.get('core.workflow.contoller')) : require('./middleware/core')(moduleManager))
+        moduleManager.core.common.middleware.use(_serviceManager, configuration != null && configuration.has('core.workflow.contoller') ? require(configuration.get('core.workflow.contoller')) : require('./middleware/core')(moduleManager))
 
         // Use the default event manager
-        moduleManager.common.middleware.use(_serviceManager, require('../../common/middleware/events-middleware/events')(moduleManager));
+        moduleManager.core.common.middleware.use(_serviceManager, require('../../common/middleware/events-middleware/events')(moduleManager));
 
         // Load the model manager
         _serviceManager.modelManager = require('./models')(moduleManager)

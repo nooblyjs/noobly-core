@@ -22,7 +22,7 @@ module.exports = function (moduleManager) {
     var _serviceManager = {};
 
     // Load the configuration controller
-    var configuration = moduleManager.services.configuration;
+    var configuration = moduleManager.core.services.configuration;
 
     // Extract the configuration
     _serviceManager.controller = configuration.has('core.logging.contoller') ? require(configuration.get('core.logging.contoller')) : require('./middleware/core')(moduleManager);

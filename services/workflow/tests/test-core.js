@@ -11,9 +11,9 @@ const events = require('events');
     // Lets add some test parameters
     var moduleManager = {}
     moduleManager.uri ='nedb://data' 
-    moduleManager.services = {};
+    moduleManager.core.services = {};
     moduleManager.parameters = {};
-    moduleManager.common = {};
+    moduleManager.core.common = {};
     moduleManager.events = new events.EventEmitter()
     require('../../../common')(moduleManager);
 

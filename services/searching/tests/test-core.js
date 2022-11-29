@@ -11,7 +11,7 @@ const events = require('events');
     console.log('========================================================================')
 
     var moduleManager = {}
-    moduleManager.services = {};
+    moduleManager.core.services = {};
     moduleManager.parameters = {};
     moduleManager.events = new events.EventEmitter()
 

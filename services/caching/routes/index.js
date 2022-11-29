@@ -20,7 +20,7 @@ module.exports = function (serviceManager) {
     _routeManager.initialise = function () {
 
         // Extract the interface manager from the parameters and configure
-        var _interfaceManager = serviceManager.services.interface != null ? serviceManager.services.interface : null;
+        var _interfaceManager = serviceManager.core.services.interface != null ? serviceManager.core.services.interface : null;
 
         if (_interfaceManager != null) {
 
@@ -32,19 +32,19 @@ module.exports = function (serviceManager) {
 
             // The cache get command
             _interfaceManager.app().route('/administrator/caching/api/get/:key').get(function (req, res) {
-                console.log(serviceManager.services.caching);
-                serviceManager.services.caching.get(req.params.key).then(data => res.status(200).send(data));
+                console.log(serviceManager.core.services.caching);
+                serviceManager.core.services.caching.get(req.params.key).then(data => res.status(200).send(data));
             });
 
             // The cache set command
             _interfaceManager.app().route('/administrator/caching/api/set/:key').post(function (req, res) {
-                serviceManager.services.caching.set(req.params.key, req.body.data)
+                serviceManager.core.services.caching.set(req.params.key, req.body.data)
                 res.status(200).send('success');
             });
 
             // The cache delete command
             _interfaceManager.app().route('/administrator/caching/api/delete/:key').delete(function (req, res) {
-                serviceManager.services.caching.del(req.params.key)
+                serviceManager.core.services.caching.del(req.params.key)
                 res.status(200).send('success');
             });
             

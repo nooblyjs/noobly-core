@@ -25,7 +25,7 @@ module.exports = function (moduleManager) {
     _serviceManager.middleware = [];
 
     // Load the configuration controller
-    var configuration = moduleManager.services.configuration;
+    var configuration = moduleManager.core.services.configuration;
 
     // Initiate the event emitter
     _serviceManager.events = (moduleManager.events != null ? moduleManager.events: new events.EventEmitter());
@@ -132,10 +132,10 @@ module.exports = function (moduleManager) {
         _serviceManager.controller = configuration != null && configuration.has('core.caching.contoller') ? require(configuration.get('core.caching.contoller')) : require('./middleware/core')(moduleManager)
 
         // Use the default middleware
-        moduleManager.common.middleware.use(_serviceManager,configuration != null && configuration.has('core.caching.contoller') ? require(configuration.get('core.caching.contoller')) : require('./middleware/core')(moduleManager))
+        moduleManager.core.common.middleware.use(_serviceManager,configuration != null && configuration.has('core.caching.contoller') ? require(configuration.get('core.caching.contoller')) : require('./middleware/core')(moduleManager))
 
         // Use the default event manager
-        moduleManager.common.middleware.use(_serviceManager,require('../../common/middleware/events-middleware/events')(moduleManager));
+        moduleManager.core.common.middleware.use(_serviceManager,require('../../common/middleware/events-middleware/events')(moduleManager));
 
         // Load the model manager
         _serviceManager.modelManager = require('./models')(moduleManager)

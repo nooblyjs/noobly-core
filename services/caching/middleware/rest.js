@@ -12,7 +12,7 @@ const request = require('request');
 module.exports = function (serviceManager) {
 
     // Load the configuration controller
-    var _configurationManager = serviceManager.services.configuration; 
+    var _configurationManager = serviceManager.core.services.configuration; 
 
     /** Variables section */
     var _middleware = {};

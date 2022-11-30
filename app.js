@@ -8,7 +8,7 @@
  var application = {};
  application.events = new events.EventEmitter();
  application.parameters = {};
- application.parameters['core.logging.logginglevel'] = 2;
+ application.parameters['core.logging.logginglevel'] = 4;
  
  // Instantiate the Shnakkydoodle Framework
  var noobs = require('.')(application);

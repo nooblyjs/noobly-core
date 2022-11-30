@@ -20,13 +20,13 @@
     "@azure/storage-blob": "*",
     "@google-cloud/storage": "*",
     "aws-sdk": "*",
-    "config": "^3.3.8",
+    "config": "*",
     "cors": "*",
-    "depd": "1.1.0",
+    "depd": "*",
     "express": "*",
     "express-session": "*",
     "liqe": "*",
-    "lodash": "4.17.21",
+    "lodash": "*",
     "memcached": "*",
     "mongodb": "*",
     "multer": "*",
@@ -37,13 +37,13 @@
     "nodemon": "*",
     "passport": "*",
     "passport-google-oauth20": "*",
-    "pg": "^8.8.0",
+    "pg": "*",
     "pm2": "*",
     "redis": "*",
-    "request": "^2.88.2",
+    "request": "*",
     "sqlite3": "*",
     "stomp-client": "*",
     "swagger-ui-express": "*",
-    "terminal-kit": "^3.0.0"
+    "terminal-kit": "*"
   }
 }

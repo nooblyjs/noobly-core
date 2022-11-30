@@ -26,6 +26,8 @@ module.exports = function (moduleManager) {
 
     // Extract the configuration
     _serviceManager.controller = configuration.has('core.logging.contoller') ? require(configuration.get('core.logging.contoller')) : require('./middleware/core')(moduleManager);
+    
+    // Extract the minimum logging level
     _serviceManager.minimumLoggingLevel = configuration.has('core.logging.logginglevel') ? configuration.get('core.logging.logginglevel') : 2;
 
     // Initialise the event emitter 

@@ -25,6 +25,7 @@
     "depd": "*",
     "express": "*",
     "express-session": "*",
+    "jsdoc": "^4.0.0",
     "liqe": "*",
     "lodash": "*",
     "memcached": "*",

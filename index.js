@@ -26,9 +26,8 @@ module.exports = function (moduleManager) {
   noobs.parameters = ((moduleManager.parameters != null) ? moduleManager.parameters : {});
 
   // Determine if we are running as a module
-  moduleManager.parameters['isModule'] = (module.parent.path.indexOf('noobs') == -1);
+  moduleManager.parameters['isModule'] = (module.parent.path.indexOf('node_modules') != -1);
   console.log('Noobs JS core running as module: ' + moduleManager.parameters['isModule'] )
-  console.log(module)
 
   // Set the event engine
   noobs.core.events = (moduleManager.events != null ? moduleManager.events : new events.EventEmitter());

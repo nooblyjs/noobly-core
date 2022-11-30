@@ -24,7 +24,7 @@
      });
  
      // Indicate that the platform has started up
-     noobs.core.services.caching.set('shnakkydoodle-startup', Date());
+     noobs.core.services.caching.set('noobs-startup', Date());
  
      // Schedule the Shnakkydoodle heartbeat
      noobs.core.services.scheduling.schedule('noobs-core-hearbeat', '1 * * * * *', function () {

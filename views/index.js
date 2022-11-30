@@ -34,7 +34,7 @@ module.exports = function (moduleManager) {
 
         // If we are running as a standalone app then redirect too '/administrator'
         if (!isModule){
-            _interfaceManager.registerSite('/',  '/views/redirect')   
+            _interfaceManager.registerSite('/',  './views/redirect')   
         }
 
         // Raise the initalised event

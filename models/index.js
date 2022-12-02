@@ -15,9 +15,6 @@ module.exports = function (moduleManager) {
         // The Location Model    
         moduleManager.core.models.location = require('./location')(moduleManager);
 
-        // The Product Model    
-        moduleManager.core.models.product = require('./product')(moduleManager);
-
         // The Person Model 
         moduleManager.core.models.person = require('./person')(moduleManager);
 

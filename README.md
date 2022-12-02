@@ -14,3 +14,6 @@ The following services are available for any application to use:
 * **Caching** : The caching service enables caching operations. The default implementation uses a volatile in memory implementation.
 
 * **Data Access** : The data access service enables database operations. The default implementation stores data on the local drive or In Memory (volatile). 
+
+
+* **Data Access** : The data access service enables database operations. The default implementation stores data on the local drive or In Memory (volatile). 

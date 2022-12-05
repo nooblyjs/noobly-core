@@ -27,9 +27,6 @@ module.exports = function (moduleManager) {
     // Load the configuration controller
     var configuration = moduleManager.core.services.configuration;
 
-    // Initiate the event emitter
-    _serviceManager.events = (moduleManager.events != null ? moduleManager.events: new events.EventEmitter());
-
     /**
      * Method : RaiseEvent
      * Note that there may be multiple event middleware's to fire
@@ -120,14 +117,10 @@ module.exports = function (moduleManager) {
         }
     }
 
-
     /**
     * Initialise Method
     */
     _serviceManager.initialise = function () {
-
-        // Set the controller
-        _serviceManager.controller = configuration != null && configuration.has('core.caching.contoller') ? require(configuration.get('core.caching.contoller')) : require('./middleware/core')(moduleManager)
 
         // Use the default middleware
         moduleManager.core.common.middleware.use(_serviceManager,configuration != null && configuration.has('core.caching.contoller') ? require(configuration.get('core.caching.contoller')) : require('./middleware/core')(moduleManager))

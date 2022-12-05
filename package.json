@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/adminnoobsjs/noobs-core#readme",
   "dependencies": {
+    "assert-strict": "^0.0.2",
     "config": "*",
     "cors": "*",
     "depd": "*",
@@ -38,5 +39,7 @@
     "request": "*",
     "swagger-ui-express": "*",
     "terminal-kit": "*"
+  },
+  "devDependencies": {
   }
 }

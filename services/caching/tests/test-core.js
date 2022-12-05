@@ -1,5 +1,6 @@
 'use strict';
 const events = require('events');
+const assert = require('assert').strict;
 
 /**
  * Perform the test against the core caching controller
@@ -35,7 +36,14 @@ const events = require('events');
    
     // Set the Key
     var cacheitemAsync = 'This is test item';
-    caching.set('cache-key', cacheitemAsync);
+    describe("Caching Test", function() {
+        it("should be able to determine if the cache item has been saved", function() {
+            caching.set('cache-key', cacheitemAsync);
+            caching.has('cache-key',function(exists){
+                assert.notStrictEqual(exists, false);
+            });
+        });
+    });
 
     // Test the Async HAS
     caching.has('cache-key',function(exists){

@@ -1,14 +1,13 @@
+/**
+ * @fileoverview The following file exposes the caching module
+ * The caching manager object exposes various caching controllers using dependancy injection based on the needs of the application
+ */
 'use strict';
 var events = require('events');
 
 /**
  * Module : Caching Manager
  * The caching manager object exposes various caching controllers using dependancy injection based on the needs of the application
- * The middleware that can be used is as follows :
- *  - core : The Core middleware use in memory objects to expose the caching functionality. Note that this cache is cleared when the application stores
- *  - memcached : The memcached middleware will interact against a memcache server
- *  - redis : The redis middleware will interact with a redis server
- *  - rest : The REST middleware will call the current implementation REST endpoints
  * @params moduleManager : The calling component
  * @events The following events are raised by this module
  *  - cache-has : A cache 'has' call has been called

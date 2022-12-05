@@ -31,15 +31,14 @@ module.exports = function (moduleManager) {
     _serviceManager.events = (moduleManager.events != null ? moduleManager.events: new events.EventEmitter());
 
     /**
-     * RaiseEvent method
-     * @param {string} name
-     * @parm {object} options
+     * Method : RaiseEvent
+     * Note that there may be multiple event middleware's to fire
+     * @param {string} name : The name of the even being fired
+     * @param {object} options : An object holding the specific parameters
     */
     _serviceManager.raiseEvent = function (name, options) {
-        _serviceManager.middleware.forEach(function (item, index) {
-            if (Reflect.has(item,'raiseEvent')){
-                item.raiseEvent(name,options);
-            }
+        moduleManager.core.common.middleware.retrieve(_serviceManager, 'raiseEvent').forEach(function (item, index) {
+            item.raiseEvent(name, options);
         });
     }
 
@@ -51,7 +50,7 @@ module.exports = function (moduleManager) {
     _serviceManager.has = function (key, callback) {
         _serviceManager.raiseEvent('event', { type: 'cache-has', message: 'caching has: ' +  key,  options : {key} });
         if (callback != null) {
-            _serviceManager.controller.has(key, callback)
+            moduleManager.core.common.middleware.retrieve(_serviceManager, 'raiseEvent').forEach.has(key, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {

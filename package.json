@@ -17,9 +17,6 @@
   },
   "homepage": "https://github.com/adminnoobsjs/noobs-core#readme",
   "dependencies": {
-    "@azure/storage-blob": "*",
-    "@google-cloud/storage": "*",
-    "aws-sdk": "*",
     "config": "*",
     "cors": "*",
     "depd": "*",
@@ -28,10 +25,8 @@
     "jsdoc": "*",
     "liqe": "*",
     "lodash": "*",
-    "memcached": "*",
-    "mongodb": "*",
+    "mongodb": "^4.12.1",
     "multer": "*",
-    "mysql": "*",
     "nedb": "*",
     "node-schedule": "*",
     "nodejs-state-machine": "*",
@@ -40,10 +35,7 @@
     "passport-google-oauth20": "*",
     "pg": "*",
     "pm2": "*",
-    "redis": "*",
     "request": "*",
-    "sqlite3": "*",
-    "stomp-client": "*",
     "swagger-ui-express": "*",
     "terminal-kit": "*"
   }

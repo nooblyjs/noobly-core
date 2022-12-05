@@ -50,11 +50,11 @@ module.exports = function (moduleManager) {
     _serviceManager.has = function (key, callback) {
         _serviceManager.raiseEvent('event', { type: 'cache-has', message: 'caching has: ' +  key,  options : {key} });
         if (callback != null) {
-            moduleManager.core.common.middleware.retrieve(_serviceManager, 'raiseEvent').forEach.has(key, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'has').has(key, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    _serviceManager.controller.has(key, function (has) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'has').has(key, function (has) {
                         resolve(has);
                     })
                 });
@@ -70,11 +70,11 @@ module.exports = function (moduleManager) {
     _serviceManager.set = function (key, value, callback) {
         _serviceManager.raiseEvent('event', { type: 'cache-set', message: 'caching set: ' +  key,  options : {key} });
         if (callback != null) {
-            _serviceManager.controller.set(key, value, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'has').set(key, value, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    _serviceManager.controller.set(key, value, function (data) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'has').set(key, value, function (data) {
                         resolve(data);
                     })
                 }
@@ -89,13 +89,12 @@ module.exports = function (moduleManager) {
     */
     _serviceManager.get = function (key, callback) {
         _serviceManager.raiseEvent('event', { type: 'cache-get', message: 'caching get: ' +  key,  options : {key} });
-
         if (callback != null) {
-            _serviceManager.controller.get(key, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'has').get(key, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    _serviceManager.controller.get(key, function (data) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'has').get(key, function (data) {
                         resolve(data);
                     })
                 }
@@ -110,11 +109,11 @@ module.exports = function (moduleManager) {
     _serviceManager.del = function (key, callback) {
         _serviceManager.raiseEvent('event', { type: 'cache-delete', message: 'caching del: ' +  key,  options : {key} });
         if (callback != null) {
-            _serviceManager.controller.del(key, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'has').del(key, callback)
         } else {
             new Promise(
                 (resolve, reject) => {
-                    _serviceManager.controller.del(key, function (data) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'has').del(key, function (data) {
                         resolve(data);
                     })
                 }).then();
@@ -132,10 +131,10 @@ module.exports = function (moduleManager) {
 
         // Use the default middleware
         moduleManager.core.common.middleware.use(_serviceManager,configuration != null && configuration.has('core.caching.contoller') ? require(configuration.get('core.caching.contoller')) : require('./middleware/core')(moduleManager))
-
+    
         // Use the default event manager
         moduleManager.core.common.middleware.use(_serviceManager,require('../../common/middleware/events-middleware/events')(moduleManager));
-
+        
         // Load the model manager
         _serviceManager.modelManager = require('./models')(moduleManager)
 

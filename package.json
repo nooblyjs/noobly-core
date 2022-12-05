@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test.js --recursive --reporter mocha-junit-reporter --timeout 60000 --exit"
+    "test": "mocha test*.js --recursive --reporter mocha-junit-reporter --timeout 60000 --exit"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/adminnoobsjs/noobs-core#readme",
   "dependencies": {
-    "assert-strict": "^0.0.2",
+    "assert-strict": "*",
     "config": "*",
     "cors": "*",
     "depd": "*",
@@ -26,8 +26,8 @@
     "jsdoc": "*",
     "liqe": "*",
     "lodash": "*",
-    "mocha-junit-reporter": "^2.2.0",
-    "mongodb": "^4.12.1",
+    "mocha-junit-reporter": "*",
+    "mongodb": "*",
     "multer": "*",
     "nedb": "*",
     "node-schedule": "*",
@@ -41,7 +41,7 @@
     "terminal-kit": "*"
   },
   "devDependencies": {
-    "mocha": "^10.1.0",
-    "request": "^2.88.2"
+    "mocha": "*",
+    "request": "*"
   }
 }

@@ -9,7 +9,7 @@ application.events = new events.EventEmitter();
 application.parameters = {};
 
 // Instantiate the noobs Framework
-var noobs = require('../')(application);
+var noobs = require('..')(application);
 
 /**
  * Initialise the server

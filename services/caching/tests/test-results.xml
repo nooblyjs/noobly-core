@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="0.003" tests="1" failures="0">
-  <testsuite name="Root Suite" timestamp="2022-12-05T10:10:29" tests="0" time="0.000" failures="0">
-  </testsuite>
-  <testsuite name="Caching Test" timestamp="2022-12-05T10:10:29" tests="1" file="/workspaces/noobs-core/services/caching/tests/test-core.js" time="0.002" failures="0">
-    <testcase name="Caching Test should be able to determine if the cache item has been saved" time="0.000" classname="should be able to determine if the cache item has been saved">
-    </testcase>
-  </testsuite>
-</testsuites>

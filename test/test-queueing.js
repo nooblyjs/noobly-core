@@ -9,7 +9,7 @@ const strictEqual = require('assert/strict');
     console.log('========================================================================')
     
     // intantiate the queue service
-    var queueing = require('..')(); 
+    var queueing = require('../services/queueing')(); 
     queueing.events.addListener('queue-enqueue', function(queue){
         console.log('EVENT RAISED :  Item enqueued to "' + queue + '"')
     });

@@ -17,7 +17,7 @@ var events = require('events');
     moduleManager.events = new events.EventEmitter()
     moduleManager.parameters['datafolder'] = './customdata';
   
-    var service = require('..')(moduleManager);
+    var service = require('../services/dataaccess')(moduleManager);
     service.createCollection('mystore', 'somedata', function(){
         service.insert('mystore', 'somedata', { hello: 'world', n: 5, today: new Date(), nedbIsAwesome: true, notthere: null, notToBeSaved: undefined, fruits: ['apple', 'orange', 'pear'], infos: { name: 'nedb' } }, function (err, data) { 
             console.log(data);
@@ -61,7 +61,7 @@ var events = require('events');
     moduleManager.events = new events.EventEmitter()
     moduleManager.parameters['datafolder'] = './customdata';
   
-    var service = require('..')(moduleManager);
+    var service = require('../services/dataaccess')(moduleManager);
     service.createCollection('mystore2', 'somedata2').then((data)=> console.log(data.success));
 
 

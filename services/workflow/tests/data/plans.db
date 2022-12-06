@@ -1,3 +1,0 @@
-{"name":"firstplan","transitions":[{"name":"playthatsong","from":"on","to":"playing"},{"name":"turnOff","from":["playing","on","paused"],"to":"off"},{"name":"turnOn","from":"off","to":"on"},{"name":"pause","from":"playing","to":"paused"}],"_id":"yIHGdRvnw2TTwkwD"}
-{"$$deleted":true,"_id":"yIHGdRvnw2TTwkwD"}
-{"name":"firstplan","transitions":[{"name":"playthatsong","from":"on","to":"playing"},{"name":"turnOff","from":["playing","on","paused"],"to":"off"},{"name":"turnOn","from":"off","to":"on"},{"name":"pause","from":"playing","to":"paused"}],"_id":"LYMG66PhtjaiR8lE"}

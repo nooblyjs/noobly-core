@@ -26,7 +26,7 @@ const assert = require('assert').strict;
    moduleManager.parameters = {};
    moduleManager.core.common = {};
    moduleManager.events = new events.EventEmitter()
-   require('../../../common')(moduleManager);
+   require('../common')(moduleManager);
 
     // intantiate the cache service
     var caching = require('..')(moduleManager); 

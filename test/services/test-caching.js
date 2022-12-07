@@ -14,11 +14,7 @@ const assert = require('assert').strict;
  *  - Delete : Delete a key from the cache synchronously
  */
 (function() {
-    
-    console.log('========================================================================')
-    console.log('=  TESTING noobsjs.core caching service  - Async                 =')
-    console.log('========================================================================')
-    
+        
    // Instantiate the modulemanager
    var moduleManager = {};
    moduleManager.core = {};
@@ -26,24 +22,36 @@ const assert = require('assert').strict;
    moduleManager.parameters = {};
    moduleManager.core.common = {};
    moduleManager.events = new events.EventEmitter()
-   require('../common')(moduleManager);
+   require('../../common')(moduleManager);
 
-    // intantiate the cache service
-    var caching = require('..')(moduleManager); 
+    // intantiate the Caching Service and wire up events
+    var caching = require('../../services/caching')(moduleManager); 
     moduleManager.events.addListener('event', function(key){
         console.log('EVENT CACHE SET :  Item cached ' + key)
     });
    
-    // Set the Key
-    var cacheitemAsync = 'This is test item';
-    describe("Caching Test", function() {
-        it("should be able to determine if the cache item has been saved", function() {
+    // Caching Setting Test
+    describe("Cache (Achronous) Setting Test", function() {
+        var cacheitemAsync = 'This is test item';
+        it("Should be able to determine if the cache item has been saved", function() {
             caching.set('cache-key', cacheitemAsync);
             caching.has('cache-key',function(exists){
                 assert.notStrictEqual(exists, false);
             });
         });
     });
+
+    // Caching Setting Value Test
+    describe("Caching Value Test", function() {
+        var cacheitemAsync = 'This is test item';
+        it("Should be able to determine if the cache item has been saved", function() {
+            caching.set('cache-key', cacheitemAsync);
+            caching.has('cache-key',function(exists){
+                assert.notStrictEqual(exists, false);
+            });
+        });
+    });
+
 
     // Test the Async HAS
     caching.has('cache-key',function(exists){

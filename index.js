@@ -26,7 +26,7 @@ module.exports = function (moduleManager) {
   noobs.parameters = ((moduleManager.parameters != null) ? moduleManager.parameters : {});
 
   // Determine if we are running as a module
-  moduleManager.parameters['isModule'] = (module.parent.path.indexOf('node_modules') != -1);
+  noobs.parameters['isModule'] = (module.parent.path.indexOf('node_modules') != -1);
 
   // Set the event engine
   noobs.core.events = (moduleManager.events != null ? moduleManager.events : new events.EventEmitter());
@@ -51,9 +51,6 @@ module.exports = function (moduleManager) {
    */
   noobs.initialise = function () {
 
-    // Print the status
-    noobs.printStatus()
-
     // Load the common module
     require('./common')(noobs);
 
@@ -68,6 +65,9 @@ module.exports = function (moduleManager) {
 
     // Load the models module
     require('./views')(noobs);
+
+    // Print the status
+    noobs.printStatus()
 
   }();
 

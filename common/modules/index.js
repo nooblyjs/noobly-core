@@ -21,7 +21,7 @@ module.exports = function () {
      * the library
      */
     _utilities.isModule = function() {
-        return module.parent.path.indexOf("node_modules") > -1;
+        return module.path.indexOf("node_modules") > -1;
     }
     
   return _utilities

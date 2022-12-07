@@ -2,7 +2,6 @@
  * @fileoverview The following file exposes the noobsjs module
  *  The core module is reponsible for loading the following core components
  *  - caching: The caching module enables caching for the platform
- *  - configuration: The configuration module enable allows configuration for the platform
  *  - dataaccess: The data access module enables database access for the plaform
  *  - files: The files module enables files for the platform
  *  - interace: The interface module enables routes and views for the platform
@@ -36,9 +35,6 @@ module.exports = function (moduleManager) {
      * Initialise function
      */
     _serviceManager.initialise = function () {
-
-        // The configuration manager
-        moduleManager.core.services.configuration = ((moduleManager.core.services.configuration != null) ? moduleManager.core.services.configuration : require('./configuration')(moduleManager));
 
         // The interface manager
         moduleManager.core.services.interface = ((moduleManager.core.services.interface != null) ? moduleManager.core.services.interface : require('./interface')(moduleManager));

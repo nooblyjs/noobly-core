@@ -29,9 +29,6 @@ module.exports = function (moduleManager) {
     // Initialise the middleware container
     _serviceManager.middleware = [];
 
-    // Load the configuration controller
-    var configuration = moduleManager.core.services.configuration;
-
     /**
      * Method : RaiseEvent
      * Note that there may be multiple event middleware's to fire
@@ -191,10 +188,10 @@ module.exports = function (moduleManager) {
     _serviceManager.initialise = function () {
 
         // Use the default middleware
-        moduleManager.core.common.middleware.use(_serviceManager, configuration != null && configuration.has('core.workflow.contoller') ? require(configuration.get('core.workflow.contoller')) : require('./middleware/core')(moduleManager))
+        moduleManager.core.common.middleware.use(_serviceManager, moduleManager.core.configuration.has('core.workflow.contoller') ? require(moduleManager.core.configuration.get('core.workflow.contoller')) : require('./middleware/core')(moduleManager))
 
         // Use the default event manager
-        moduleManager.core.common.middleware.use(_serviceManager, require('../../common/middleware/events-middleware/events')(moduleManager));
+        moduleManager.core.common.middleware.use(_serviceManager, require('../../common/events/events')(moduleManager));
 
         // Load the model manager
         _serviceManager.modelManager = require('./models')(moduleManager)

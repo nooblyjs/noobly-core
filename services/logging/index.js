@@ -21,14 +21,11 @@ module.exports = function (moduleManager) {
     // Initiate the object 
     var _serviceManager = {};
 
-    // Load the configuration controller
-    var configuration = moduleManager.core.services.configuration;
-
     // Extract the configuration
-    _serviceManager.controller = configuration.has('core.logging.contoller') ? require(configuration.get('core.logging.contoller')) : require('./middleware/core')(moduleManager);
+    _serviceManager.controller = moduleManager.core.configuration.has('core.logging.contoller') ? require(moduleManager.core.configuration.get('core.logging.contoller')) : require('./middleware/core')(moduleManager);
     
     // Extract the minimum logging level
-    _serviceManager.minimumLoggingLevel = configuration.has('core.logging.logginglevel') ? configuration.get('core.logging.logginglevel') : 2;
+    _serviceManager.minimumLoggingLevel = moduleManager.core.configuration.has('core.logging.logginglevel') ? moduleManager.core.configuration.get('core.logging.logginglevel') : 2;
 
     // Initialise the event emitter 
     _serviceManager.events = new events.EventEmitter();

@@ -32,7 +32,6 @@ module.exports = function (serviceManager) {
 
             // The cache get command
             _interfaceManager.app().route('/administrator/caching/api/get/:key').get(function (req, res) {
-                console.log(serviceManager.core.services.caching);
                 serviceManager.core.services.caching.get(req.params.key).then(data => res.status(200).send(data));
             });
 

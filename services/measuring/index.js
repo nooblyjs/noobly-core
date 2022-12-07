@@ -28,7 +28,7 @@ module.exports = function (moduleManager) {
     var configuration = moduleManager.core.services.configuration;
 
     // Load the controllers
-    _serviceManager.controller = configuration.has('core.caching.contoller') ? require(configuration.get('core.caching.contoller')) : require('./middleware/core')(moduleManager);
+    _serviceManager.controller = moduleManager.core.configuration.has('core.caching.contoller') ? require(moduleManager.core.configuration.get('core.caching.contoller')) : require('./middleware/core')(moduleManager);
 
     // Initialise the event emitter
     _serviceManager.events = new events.EventEmitter();

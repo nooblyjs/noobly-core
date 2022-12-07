@@ -13,7 +13,7 @@ module.exports = function (moduleManager) {
     var configuration = moduleManager.core.services.configuration;
 
     // Load the controllers
-    _serviceManager.controller = configuration.has('core.scheduling.contoller') ? require(configuration.get('core.scheduling.contoller')) : require('./middleware/core')(moduleManager);
+    _serviceManager.controller = moduleManager.core.configuration.has('core.scheduling.contoller') ? require(moduleManager.core.configuration.get('core.scheduling.contoller')) : require('./middleware/core')(moduleManager);
 
     // Initialise the event emitter
     _serviceManager.events = new events.EventEmitter();

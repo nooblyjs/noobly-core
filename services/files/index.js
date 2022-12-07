@@ -30,11 +30,8 @@ module.exports = function (moduleManager) {
     // Initiate the object 
     var _serviceManager = {};
 
-    // Load the configuration controller
-    var configuration = moduleManager.core.services.configuration; 
-
     // Load the controllers
-    _serviceManager.controller = configuration.has('core.files.contoller')? require(configuration.get('core.files.contoller')) : require('./middleware/core')(moduleManager);
+    _serviceManager.controller = moduleManager.core.configuration.has('core.files.contoller')? require(moduleManager.core.configuration.get('core.files.contoller')) : require('./middleware/core')(moduleManager);
 
     // Initialise the event emitter
     _serviceManager.events = new events.EventEmitter();

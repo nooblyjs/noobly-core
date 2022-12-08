@@ -27,7 +27,7 @@ module.exports = function (moduleManager) {
         _interfaceManager.app().use(express.json())
         
         // Register the UI css and js to be used by all backoffice interfaces
-        _interfaceManager.registerSite('/dist', (isModule ? './node_modules/noobs-core' : '.') + '/views/dist');
+        _interfaceManager.registerSite('/lib', (isModule ? './node_modules/noobs-core' : '.') + '/views/lib');
         
         // Register the admin views
         _interfaceManager.registerSite('/administrator', (isModule ? './node_modules/noobs-core' : '.') + '/views/administrator')

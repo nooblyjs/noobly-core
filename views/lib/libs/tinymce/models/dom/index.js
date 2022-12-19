@@ -4,4 +4,4 @@
 //     require('tinymce/models/dom')
 //   ES2015:
 //     import 'tinymce/models/dom'
-require('./models/js');
+require('./model.js');

@@ -34,7 +34,7 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/demo/",
-      "/lib/",
+      "/dist/",
       "/tests/cypress/"
     ],
     "collectCoverage": false

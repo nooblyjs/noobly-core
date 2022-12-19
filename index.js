@@ -25,9 +25,6 @@ module.exports = function (moduleManager) {
   // Set the parameters object from the parent object else create one
   noobs.parameters = ((moduleManager.parameters != null) ? moduleManager.parameters : {});
 
-  // Determine if we are running as a module
-  noobs.parameters['isModule'] = (module.path.indexOf('node_modules') != -1);
-
   // Set the event engine
   noobs.core.events = (moduleManager.events != null ? moduleManager.events : new events.EventEmitter());
 
@@ -36,7 +33,7 @@ module.exports = function (moduleManager) {
    */
   noobs.printStatus = function () {
     console.log('========================================================================')
-    console.log('Module Status: Running as module: ' + moduleManager.parameters['isModule'])
+    console.log('Module Status: Running as module: ' + noobs.core.common.modules.isModule());
     console.log('========================================================================')
   }
 

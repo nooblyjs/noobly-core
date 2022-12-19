@@ -7,9 +7,6 @@ const express = require('express');
  */
 module.exports = function (moduleManager) {
 
-    // Determine if we are running as a module
-    var isModule = 'isModule' in moduleManager.parameters ? moduleManager.parameters['isModule'] : null
-
     /** Initiate the object */
     var _viewManager = {};
 
@@ -27,7 +24,7 @@ module.exports = function (moduleManager) {
             _interfaceManager.app().use(express.json())
 
             // Register the UI css and js to be used by all backoffice interfaces
-            _interfaceManager.registerSite('/administrator/caching/', (isModule ? './node_modules/noobsjs' : '.') + '/services/caching/views/pages');
+            _interfaceManager.registerSite('/administrator/caching/', (moduleManager.core.common.modules.isModule() ? './node_modules/noobsjs' : '.') + '/services/caching/views/pages');
 
             // Raise the initalised event
             _viewManager.events.emit('core-viewmanager-initialise', 'success');

@@ -1,5 +1,4 @@
 'use strict';
-
 var events = require('events');
 
 
@@ -11,13 +10,17 @@ var events = require('events');
     console.log('========================================================================')
 
     // Instantiate the modulemanager
-    var moduleManager = {}
+    var moduleManager = {};
+    moduleManager.core = {};
     moduleManager.core.services = {};
     moduleManager.parameters = {};
+    moduleManager.core.common = {};
     moduleManager.events = new events.EventEmitter()
+    require('../../common')(moduleManager);
+
     moduleManager.parameters['datafolder'] = './customdata';
   
-    var service = require('../services/dataaccess')(moduleManager);
+    var service = require('../dataaccess')(moduleManager);
     service.createCollection('mystore', 'somedata', function(){
         service.insert('mystore', 'somedata', { hello: 'world', n: 5, today: new Date(), nedbIsAwesome: true, notthere: null, notToBeSaved: undefined, fruits: ['apple', 'orange', 'pear'], infos: { name: 'nedb' } }, function (err, data) { 
             console.log(data);

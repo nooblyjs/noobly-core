@@ -38,7 +38,7 @@ module.exports = function (moduleManager) {
     /**
      * has async method
      * @param {string} key
-     * @parm {function : optional}  callback 
+     * @param {function : optional}  callback 
     */
     _serviceManager.has = function (key, callback) {
         _serviceManager.raiseEvent('event', { type: 'cache-has', message: 'caching has: ' +  key,  options : {key} });
@@ -58,7 +58,7 @@ module.exports = function (moduleManager) {
      * Set async method
      * @param {string} key
      * @param {mixed} value
-     * @parm {function : optional} callback
+     * @param {function : optional} callback
     */
     _serviceManager.set = function (key, value, callback) {
         _serviceManager.raiseEvent('event', { type: 'cache-set', message: 'caching set: ' +  key,  options : {key} });
@@ -78,7 +78,7 @@ module.exports = function (moduleManager) {
     /**
      * Get async method
      * @param {string} key
-     * @parm {function : optional} callback
+     * @param {function : optional} callback
     */
     _serviceManager.get = function (key, callback) {
         _serviceManager.raiseEvent('event', { type: 'cache-get', message: 'caching get: ' +  key,  options : {key} });
@@ -98,6 +98,7 @@ module.exports = function (moduleManager) {
     /**
     * Delete async method
     * @param {string} key
+    * @param {function : optional} callback
     */
     _serviceManager.del = function (key, callback) {
         _serviceManager.raiseEvent('event', { type: 'cache-delete', message: 'caching del: ' +  key,  options : {key} });

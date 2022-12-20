@@ -1,3 +1,7 @@
+/**
+ * @fileoverview The following file defines the default caching middleware
+ * The default caching middleware is just an im memory nodejs key value pair
+ */
 'use strict';
 
 /**
@@ -7,9 +11,6 @@
  * @returns {object} _middleware The instance of the middleware
 */
 module.exports = function (serviceManager) {
-
-    // Load the configuration controller
-    var _configurationManager = serviceManager.core.services.configuration; 
 
     /** Variables section */
     var _middleware = {};

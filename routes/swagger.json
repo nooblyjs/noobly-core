@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "The noobsjs Server API's",
-    "description": "This project ecapsulates all the api methods for the noobsjs server"
+    "title": "The nooblyjs Server API's",
+    "description": "This project ecapsulates all the api methods for the nooblyjs server"
   },
   "basePath": "/administrator/",
   "tags": [

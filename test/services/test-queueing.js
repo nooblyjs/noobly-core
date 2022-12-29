@@ -5,7 +5,7 @@ const strictEqual = require('assert/strict');
 (function() {
     
     console.log('========================================================================')
-    console.log('=  TESTING noobsjs.core queueing service                         =')
+    console.log('=  TESTING nooblyjs.core queueing service                         =')
     console.log('========================================================================')
     
     // intantiate the queue service
@@ -33,7 +33,7 @@ const strictEqual = require('assert/strict');
     queueing.dequeue('test queue 2').then(data => console.log('02. Item Dequeued value from "test queue" value: ' + data))
 
     console.log('========================================================================')
-    console.log('=  TESTING noobsjs.core topic service                            =')
+    console.log('=  TESTING nooblyjs.core topic service                            =')
     console.log('========================================================================')
 
     queueing.events.addListener('topic-subscribe', function(topic){

@@ -6,7 +6,7 @@ var events = require('events');
 (function () {
 
     console.log('========================================================================')
-    console.log('=  TESTING noobsjs.dataaccess core implementation                 ')
+    console.log('=  TESTING nooblyjs.dataaccess core implementation                 ')
     console.log('========================================================================')
 
     // Instantiate the modulemanager
@@ -54,7 +54,7 @@ var events = require('events');
     });
 
     console.log('========================================================================')
-    console.log('=  TESTING noobsjs.dataaccess core implementation  Promise        ')
+    console.log('=  TESTING nooblyjs.dataaccess core implementation  Promise        ')
     console.log('========================================================================')
 
 

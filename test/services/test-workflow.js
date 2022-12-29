@@ -5,7 +5,7 @@ const events = require('events');
 (async function () {
 
     console.log('========================================================================')
-    console.log('=  TESTING noobsjs.core WORKFLOW  ASYNC                          =')
+    console.log('=  TESTING nooblyjs.core WORKFLOW  ASYNC                          =')
     console.log('========================================================================')
 
     // Lets add some test parameters
@@ -68,7 +68,7 @@ const events = require('events');
     /*
 
     console.log('========================================================================')
-    console.log('=  TESTING noobsjs.core  WORKFLOW                                =')
+    console.log('=  TESTING nooblyjs.core  WORKFLOW                                =')
     console.log('========================================================================')
 
     // Lets add some test parameters
@@ -102,7 +102,7 @@ const events = require('events');
     });
 
     console.log('========================================================================')
-    console.log('=  TESTING noobsjs.core WORKFLOW  Plan                          =')
+    console.log('=  TESTING nooblyjs.core WORKFLOW  Plan                          =')
     console.log('========================================================================')
 
     var moduleManager = {};
@@ -125,7 +125,7 @@ const events = require('events');
     });
 
     console.log('========================================================================')
-    console.log('=  TESTING noobsjs.core WORKFLOW  Plan                          =')
+    console.log('=  TESTING nooblyjs.core WORKFLOW  Plan                          =')
     console.log('========================================================================')
 
     var moduleManager = {};

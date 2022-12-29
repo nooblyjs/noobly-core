@@ -17,7 +17,7 @@ module.exports = function () {
      /**
      * This utilitie allows us to find whether the project is running standalone or in modules. 
      * This then allows static resources to be accessible no matter at what level you are running 
-     * be it noobsjs or noobsjs-module or any of the family of products that use
+     * be it nooblyjs or nooblyjs-module or any of the family of products that use
      * the library
      */
     _utilities.isModule = function() {

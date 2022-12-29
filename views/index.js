@@ -3,7 +3,7 @@ const events = require('events');
 const express = require('express');
 
 /**
- * The noobsjs core view manager
+ * The nooblyjs core view manager
  * This view manager is responsible for the administrator views
  * @param {object} moduleManager The parent module
  * @events core-viewmanager-initialise : When the views are initalised
@@ -27,10 +27,10 @@ module.exports = function (moduleManager) {
         _interfaceManager.app().use(express.json())
         
         // Register the UI css and js to be used by all backoffice interfaces
-        _interfaceManager.registerSite('/lib', (isModule ? './node_modules/noobs-core' : '.') + '/views/lib');
+        _interfaceManager.registerSite('/lib', (isModule ? './node_modules/noobly-core' : '.') + '/views/lib');
         
         // Register the admin views
-        _interfaceManager.registerSite('/administrator', (isModule ? './node_modules/noobs-core' : '.') + '/views/administrator')
+        _interfaceManager.registerSite('/administrator', (isModule ? './node_modules/noobly-core' : '.') + '/views/administrator')
 
         // If we are running as a standalone app then redirect too '/administrator'
         if (!isModule){

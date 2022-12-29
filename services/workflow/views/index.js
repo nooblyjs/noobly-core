@@ -3,7 +3,7 @@ const events = require('events');
 const express = require('express');
 
 /**
- * The noobsjs core Workflow view manager
+ * The nooblyjs core Workflow view manager
  */
 module.exports = function (moduleManager) {
 

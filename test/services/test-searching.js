@@ -7,7 +7,7 @@ const events = require('events');
 (function () {
 
     console.log('========================================================================')
-    console.log('=  TESTING noobsjs searching service                         =')
+    console.log('=  TESTING nooblyjs searching service                         =')
     console.log('========================================================================')
 
     var moduleManager = {}

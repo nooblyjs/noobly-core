@@ -3,7 +3,7 @@ const events = require('events');
 const express = require('express');
 
 /**
- * The noobsjs core Caching view manager
+ * The nooblyjs core Caching view manager
  */
 module.exports = function (moduleManager) {
 

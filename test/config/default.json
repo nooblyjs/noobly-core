@@ -4,6 +4,6 @@
         "port": 8080
     },
     "application" : {
-        "name" : "noobsjs core"
+        "name" : "nooblyjs core"
     }
 }

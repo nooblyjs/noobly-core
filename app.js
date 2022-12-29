@@ -10,7 +10,7 @@
  application.parameters = {};
  
  // Instantiate the Shnakkydoodle Framework
- var noobs = require('.')(application);
+ var noobly = require('.')(application);
  
  /**
   * Initialise the server
@@ -18,22 +18,22 @@
   application.initialise = function () {
 
      // Add the event listener
-     noobs.core.events.addListener('event', function (data) {
-        noobs.core.services.logging.debug('Event: type: ' + data.type + ' message: ' + data.message);
+     noobly.core.events.addListener('event', function (data) {
+      noobly.core.services.logging.debug('Event: type: ' + data.type + ' message: ' + data.message);
      });
  
      // Indicate that the platform has started up
-     noobs.core.services.caching.set('noobs-startup', Date());
+     noobly.core.services.caching.set('noobly-startup', Date());
  
      // Schedule the Shnakkydoodle heartbeat
-     noobs.core.services.scheduling.schedule('noobs-core-hearbeat', '1 * * * * *', function () {
-        noobs.core.services.logging.log('noobs core heartbeat');
-        noobs.core.services.caching.set('noobs-core-running', Date());
+     noobly.core.services.scheduling.schedule('noobly-core-hearbeat', '1 * * * * *', function () {
+      noobly.core.services.logging.log('noobly core heartbeat');
+      noobly.core.services.caching.set('noobly-core-running', Date());
      });
  
      // Launch a test server
-     noobs.core.services.interface.listen(process.env.PORT || noobs.core.configuration.get('server.port'), function (port) {
-        noobs.core.services.logging.warn(noobs.core.configuration.get('application.name') + ': running on ' + port + ' in ' + process.cwd() + '\n');
+     noobly.core.services.interface.listen(process.env.PORT || noobly.core.configuration.get('server.port'), function (port) {
+        noobly.core.services.logging.warn(noobly.core.configuration.get('application.name') + ': running on ' + port + ' in ' + process.cwd() + '\n');
      });
  
  }();

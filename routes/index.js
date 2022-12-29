@@ -10,7 +10,7 @@ const swaggerUi = require('swagger-ui-express')
  * @param {object} moduleManager The parent module
  * @returns {object} _routeManager This route manager
  * @interaces
- *  - /administrator/api/api-docs : displays the swagger for the noobsjs services
+ *  - /administrator/api/api-docs : displays the swagger for the nooblyjs services
  */
 module.exports = function (moduleManager) {
 

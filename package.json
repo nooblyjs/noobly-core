@@ -1,5 +1,5 @@
 {
-  "name": "noobs-core",
+  "name": "noobly-core",
   "version": "1.0.6",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adminnoobsjs/noobs-core.git"
+    "url": "git+https://github.com/adminnooblyjs/noobly-core.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/adminnoobsjs/noobs-core/issues"
+    "url": "https://github.com/adminnooblyjs/noobly-core/issues"
   },
-  "homepage": "https://github.com/adminnoobsjs/noobs-core#readme",
+  "homepage": "https://github.com/adminnooblyjs/noobly-core#readme",
   "dependencies": {
     "assert-strict": "*",
     "config": "*",

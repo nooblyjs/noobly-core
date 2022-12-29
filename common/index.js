@@ -1,5 +1,5 @@
 /**
- * @fileoverview The following file exposes the noobsjs module
+ * @fileoverview The following file exposes the nooblyjs module
  *  The core module is reponsible for loading the following core components
  *  - caching: The caching module enables caching for the platform
  *  - configuration: The configuration module enable allows configuration for the platform
@@ -20,7 +20,7 @@
 const events = require('events');
 
 /**
- * Module : The services Module encapsulates all the services of noobsjs
+ * Module : The services Module encapsulates all the services of nooblyjs
  * @param {object} moduleManager : The calling object 
  * @returns {object} _serviceManager
  */

@@ -5,7 +5,7 @@ const strictEqual = require('assert/strict');
 (function() {
     
     console.log('========================================================================')
-    console.log('=  TESTING noobsjs.core logging service                         =')
+    console.log('=  TESTING nooblyjs.core logging service                         =')
     console.log('========================================================================')
     
     // intantiate the service

@@ -30,7 +30,7 @@ module.exports = function (moduleManager) {
         _interfaceManager.registerSite('/lib', (isModule ? './node_modules/noobly-core' : '.') + '/views/lib');
         
         // Register the admin views
-        _interfaceManager.registerSite('/administrator', (isModule ? './node_modules/noobly-core' : '.') + '/views/administrator')
+        _interfaceManager.registerSite('/backoffice', (isModule ? './node_modules/noobly-core' : '.') + '/views/backoffice')
 
         // If we are running as a standalone app then redirect too '/administrator'
         if (!isModule){

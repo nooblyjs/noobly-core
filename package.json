@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adminnooblyjs/noobly-core.git"
+    "url": "git+https://github.com/nooblyjs/noobly-core.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/adminnooblyjs/noobly-core/issues"
+    "url": "https://github.com/nooblyjs/noobly-core/issues"
   },
-  "homepage": "https://github.com/adminnooblyjs/noobly-core#readme",
+  "homepage": "https://github.com/nooblyjs/noobly-core#readme",
   "dependencies": {
     "assert-strict": "*",
     "config": "*",

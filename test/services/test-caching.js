@@ -3,6 +3,7 @@
  */
 'use strict';
 const events = require('events');
+const { hasUncaughtExceptionCaptureCallback } = require('process');
 const assert = require('assert').strict;
 
 /**
@@ -43,7 +44,7 @@ const assert = require('assert').strict;
         it("Should be able to determine if the cache item has been saved by HAS", function () {
             caching.set('cache-key-test-1', 'Some cached text', function () {
                 caching.has('cache-key-test-1', function (exists) {
-                    assert.notStrictEqual(exists, false);
+                    assert.strictEqual(exists, true);
                 });
             });
         });
@@ -67,10 +68,10 @@ const assert = require('assert').strict;
         it("Should be able to determine if the cache item has been deleted", function () {
             caching.set('cache-key-test3', cacheitemAsync, function () {
                 caching.has('cache-key-test3', function (exists) {
-                    assert.notStrictEqual(exists, true);
+                    assert.strictEqual(exists, true);
                     caching.del('cache-key-test3', function (exists) {
                         caching.has('cache-key-test3', function (exists) {
-                            assert.notStrictEqual(exists, false);
+                            assert.strictEqual(exists, false);
                         });
                     });
                 });
@@ -83,7 +84,7 @@ const assert = require('assert').strict;
         it("Should be able to determine if the cache item has been saved by has synchronously", function () {
             caching.set('cache-key-test4', 'This is test item');
             caching.has('cache-key-test4').then(data => function (exists) {
-                assert.notStrictEqual(exists, false);
+                assert.strictEqual(exists, false);
             });
         });
     });
@@ -94,7 +95,7 @@ const assert = require('assert').strict;
         it("Should be able to determine if the cache item has been saved by value synchronously", function () {
             caching.set('cache-key-test-5', cacheitem);
             caching.get('cache-key-test-5').then(data => function (data) {
-                assert.notStrictEqual(data, cacheitem);
+                assert.strictEqual(data, cacheitem);
             });
         });
     });
@@ -105,10 +106,10 @@ const assert = require('assert').strict;
         it("Should be able to determine if the cache item has been deleted synchronously", function () {
             caching.set('cache-key-test-6', cacheitem);
             caching.get('cache-key-test-6').then(data => function (data) {
-                assert.notStrictEqual(data, cacheitem);
+                assert.strictEqual(data, cacheitem);
                 caching.del('cache-key-test-6').then(success => function (success) {
                     caching.has('cache-key-test6').then(data => function (exists) {
-                        assert.strictEqual(exists, false);
+                        assert.strictEqual(exists, true);
                     });
                 })
             });

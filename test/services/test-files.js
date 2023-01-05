@@ -11,42 +11,19 @@ const events = require('events');
     var moduleManager = {};
     moduleManager.core = {};
     moduleManager.core.services = {};
-    moduleManager.parameters = {};
+    moduleManager.parameters = { 'basefolder': './data/' };
     moduleManager.core.common = {};
     moduleManager.events = new events.EventEmitter()
 
     // Load the common utilities
     require('../../common')(moduleManager);
 
-    var parameters = { 'basefolder': './data/' };
+    moduleManager.events = new events.EventEmitter()
+    moduleManager.events.addListener('event', function (data) {
+        console.log('Event: type: ' + data.type + ' message: ' + data.message)
+    });
 
     var service = require('../../services/files')(moduleManager);
-    
-    service.events.addListener('files-create', function (data) {
-        console.log('EVENT RAISED :  File created ' + data)
-    });
-    service.events.addListener('files-append', function (data) {
-        console.log('EVENT RAISED :  File appended ' + data)
-    });
-    service.events.addListener('files-rename', function (data) {
-        console.log('EVENT RAISED :  File renamed ' + data)
-    });
-    service.events.addListener('files-exists', function (data) {
-        console.log('EVENT RAISED :  File exists ' + data)
-    });
-    service.events.addListener('files-exists', function (data) {
-        console.log('EVENT RAISED :  File exists ' + data)
-    });
-    service.events.addListener('files-read', function (data) {
-        console.log('EVENT RAISED :  File Read ' + data)
-    });
-    service.events.addListener('files-readdirectory', function (data) {
-        console.log('EVENT RAISED :  File Read Directory ' + data)
-    });
-    service.events.addListener('files-delete', function (data) {
-        console.log('EVENT RAISED :  File Delete ' + data)
-    });
-
     service.create('testfile.txt', 'Some File data', function (data) {
         console.log(data)
         service.append('testfile.txt', 'Some more data', function (data) {

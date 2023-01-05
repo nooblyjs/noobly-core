@@ -52,16 +52,17 @@ module.exports = function (moduleManager) {
      * Create a file
      * @param {String} filename
      * @param {object} content
-     * @param {object} callback
+     * @param {function : optional} callback
     */
     _serviceManager.create = function (filename, content, callback) {
+        console.log( moduleManager.core.common.middleware);
         _serviceManager.raiseEvent('event', { type: 'files-create', message: 'file created: ' + filename, options: { filename } });
         if (callback != null) {
-            moduleManager.core.common.middleware.retrieveFirst.create(filename, content, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').create(filename, content, callback)
         } else {
             return new Promise(
                 (resolve, reject) => {
-                    moduleManager.core.common.middleware.retrieveFirst.create(filename, content, function (status) {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').create(filename, content, function (status) {
                         resolve(status);
                     })
                 });
@@ -73,78 +74,121 @@ module.exports = function (moduleManager) {
      * Append to file
      * @param {String} filename
      * @param {object} content
-     * @param {object} callback
-     */
-    _serviceManager.appendAsync = function (filename, content, callback) {
-        _serviceManager.events.emit('files-append', filename);
-        _serviceManager.provider.append(filename, content, callback)
-    }
-
-    /**
-     * Append to file
-     * @param {String} filename
-     * @param {object} content
-     * @param {object} callback
+     * @param {function : optional} callback
      */
     _serviceManager.append = function (filename, content, callback) {
-        _serviceManager.raiseEvent('event', { type: 'files-append', message: 'file appended: ' + filename, options: { filename } });
+        _serviceManager.raiseEvent('event', { type: 'files-appended', message: 'file appended: ' + filename, options: { filename } });
         if (callback != null) {
-            _serviceManager.provider.append(filename, content, callback)
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').append(filename, content, callback)
         } else {
-
+            return new Promise(
+                (resolve, reject) => {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').append(filename, content, function (status) {
+                        resolve(status);
+                    })
+                });
         }
-        _serviceManager.provider.append(filename, content, callback)
     }
 
     /**
     * Rename to file
     * @param {String} filename
     * @param {String} newfilename
+    * @param {function : optional} callback
     */
     _serviceManager.rename = function (filename, newfilename, callback) {
-        _serviceManager.events.emit('files-rename', filename + ' ' + newfilename);
-        _serviceManager.provider.rename(filename, newfilename, callback)
+        _serviceManager.raiseEvent('event', { type: 'files-renamed', message: 'file renamed: ' + filename, options: { filename } });
+        if (callback != null) {
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').rename(filename, newfilename, callback)
+        } else {
+            return new Promise(
+                (resolve, reject) => {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').rename(filename, newfilename, function (status) {
+                        resolve(status);
+                    })
+                });
+        }
     }
 
     /**
      * Delete a file
      * @param {String} filename
+     * @param {function : optional} callback
      */
     _serviceManager.delete = function (filename, callback) {
-        _serviceManager.events.emit('files-delete', filename);
-        _serviceManager.provider.delete(filename, callback)
+        _serviceManager.raiseEvent('event', { type: 'files-delete', message: 'file deleted: ' + filename, options: { filename } });
+        if (callback != null) {
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').delete(filename, callback)
+        } else {
+            return new Promise(
+                (resolve, reject) => {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').delete(filename, function (status) {
+                        resolve(status);
+                    })
+                });
+        }
     }
 
     /**
      * Read a File
-     * @param {String} filePath
-     */
-    _serviceManager.readFile = function (filePath, callback) {
-        _serviceManager.events.emit('files-readfile', filePath);
-        _serviceManager.provider.readFile(filePath, callback)
+     * @param {String} filename
+     * @param {function : optional} callback
+    */
+    _serviceManager.readFile = function (filename, callback) {
+        _serviceManager.raiseEvent('event', { type: 'files-read', message: 'file read: ' + filename, options: { filename } });
+        if (callback != null) {
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').readFile(filename, callback)
+        } else {
+            return new Promise(
+                (resolve, reject) => {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').readFile(filename, function (data) {
+                        resolve(data);
+                    })
+                });
+        }
     }
 
     /**
      * List a directory
      * @param {String} directory
+     * @param {function : optional} callback
      */
     _serviceManager.readDirectory = function (directory, callback) {
-        _serviceManager.events.emit('files-readdirectory', directory);
-        _serviceManager.provider.readDirectory(directory, callback)
+        _serviceManager.raiseEvent('event', { type: 'files-directory', message: 'file directory: ' + directory, options: { directory } });
+        if (callback != null) {
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').readDirectory(directory, callback)
+        } else {
+            return new Promise(
+                (resolve, reject) => {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').readDirectory(directory, function (data) {
+                        resolve(data);
+                    })
+                });
+        }
     }
 
     /**
      * Does a file exist
      * @param {String} directory
+     * @param {function : optional} callback
      */
     _serviceManager.exists = function (filePath, callback) {
-        _serviceManager.events.emit('files-fileexists', filePath);
-        _serviceManager.provider.exists(filePath, callback)
+        _serviceManager.raiseEvent('event', { type: 'files-exists', message: 'file exists: ' + filePath, options: { filePath } });
+        if (callback != null) {
+            moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').exists(filePath, callback)
+        } else {
+            return new Promise(
+                (resolve, reject) => {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').exists(filePath, function (exists) {
+                        resolve(exists);
+                    })
+                });
+        }
     }
 
     /**
-* Initialise Method
-*/
+    * Initialise Method
+    */
     _serviceManager.initialise = function () {
 
         // Use the default middleware

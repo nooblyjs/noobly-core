@@ -30,46 +30,42 @@ module.exports = function (moduleManager) {
     // Initiate the object 
     var _serviceManager = {};
 
-    // Load the controllers
-    _serviceManager.controller = moduleManager.core.configuration.has('core.files.contoller')? require(moduleManager.core.configuration.get('core.files.contoller')) : require('./middleware/core')(moduleManager);
+    // Initiate the object 
+    var _serviceManager = {};
 
-    // Initialise the event emitter
-    _serviceManager.events = new events.EventEmitter();
-
-    // Load the model manager
-    _serviceManager.modelManager = require('./models')(moduleManager)
-
-    // Load the route manager
-    _serviceManager.routeManager = require('./routes')(moduleManager)
-
-    // Load the views manager
-    _serviceManager.routeManager = require('./views')(moduleManager)
+    // Initialise the middleware container
+    _serviceManager.middleware = [];
 
     /**
-     * Create a file asynchronous
-     * @param {String} filename
-     * @param {object} content
-     * @param {object} callback
-     */
-    _serviceManager.createAsync = function (filename, content, callback) {
-        _serviceManager.events.emit('files-create', filename);
-        _serviceManager.provider.create(filename, content, callback)
+     * Method : RaiseEvent
+     * Note that there may be multiple event middleware's to fire
+     * @param {string} name : The name of the even being fired
+     * @param {object} options : An object holding the specific parameters
+    */
+    _serviceManager.raiseEvent = function (name, options) {
+        moduleManager.core.common.middleware.retrieve(_serviceManager, 'raiseEvent').forEach(function (item, index) {
+            item.raiseEvent(name, options);
+        });
     }
-
 
     /**
      * Create a file
      * @param {String} filename
      * @param {object} content
-     */
+     * @param {object} callback
+    */
     _serviceManager.create = function (filename, content, callback) {
-        _serviceManager.events.emit('files-create', filename);
-        return new Promise(
-            (resolve, reject) => {
-                _serviceManager.provider.create(filename, content, function (status) {
-                    resolve(status);
-                })
-            });
+        _serviceManager.raiseEvent('event', { type: 'files-create', message: 'file created: ' + filename, options: { filename } });
+        if (callback != null) {
+            moduleManager.core.common.middleware.retrieveFirst.create(filename, content, callback)
+        } else {
+            return new Promise(
+                (resolve, reject) => {
+                    moduleManager.core.common.middleware.retrieveFirst.create(filename, content, function (status) {
+                        resolve(status);
+                    })
+                });
+        }
     }
 
 
@@ -91,7 +87,12 @@ module.exports = function (moduleManager) {
      * @param {object} callback
      */
     _serviceManager.append = function (filename, content, callback) {
-        _serviceManager.events.emit('files-append', filename);
+        _serviceManager.raiseEvent('event', { type: 'files-append', message: 'file appended: ' + filename, options: { filename } });
+        if (callback != null) {
+            _serviceManager.provider.append(filename, content, callback)
+        } else {
+
+        }
         _serviceManager.provider.append(filename, content, callback)
     }
 
@@ -142,70 +143,26 @@ module.exports = function (moduleManager) {
     }
 
     /**
-     * Load the API endpoints of the service
-     * @param {object} app
-     */
-    _serviceManager.registerAPIs = function (app) {
-        app.use(express.json())
+* Initialise Method
+*/
+    _serviceManager.initialise = function () {
 
-        // The create file command
-        app.route('/server/files/create/:filename').post(function (req, res) {
-            _serviceManager.enqueue(req.params.queue, req.body.data)
-            res.status(200).send('success');
-        });
+        // Use the default middleware
+        moduleManager.core.common.middleware.use(_serviceManager, moduleManager.core.configuration.has('core.files.contoller') ? require(moduleManager.core.configuration.get('core.files.contoller')) : require('./middleware/core')(moduleManager))
 
-        // The append file command
-        app.route('/server/files/append/:filename').post(function (req, res) {
-            _serviceManager.enqueue(req.params.queue, req.body.data)
-            res.status(200).send('success');
-        });
+        // Use the default event manager
+        moduleManager.core.common.middleware.use(_serviceManager, require('../../common/events/events.js')(moduleManager));
 
-        // The rename file command
-        app.route('/server/files/rename/:filename/:new_filename').get(function (req, res) {
-            _serviceManager.dequeue(req.params.queue).then(data => res.status(200).send(data));
-        });
+        // Load the model manager
+        _serviceManager.modelManager = require('./models')(moduleManager)
 
-        // The delete file command
-        app.route('/server/files/delete/:filename').delete(function (req, res) {
-            _serviceManager.subscribe(req.params.topic, req.params.subscriber)
-            res.status(200).send('success');
-        });
+        // Load the route manager
+        _serviceManager.routeManager = require('./routes')(moduleManager)
 
-        // The topics send command
-        app.route('/server/topics/send/:topic').post(function (req, res) {
-            _serviceManager.send(req.params.topic, req.body.data)
-            res.status(200).send('success');
-        });
+        // Load the views manager
+        _serviceManager.viewManager = require('./views')(moduleManager)
 
-        // The topic subscribe command
-        app.route('/server/topics/receive/:topic/:subscriber').get(function (req, res) {
-            _serviceManager.receive(req.params.topic, req.params.subscriber).then(data => res.status(200).send(data));
-        });
-
-        // The server ping
-        app.route('/server/queueing/ping').get(function (req, res) {
-            res.status(200).send('success');
-        });
-    }
+    }();
 
     return _serviceManager;
 };
-
-/*
-var express = require('express');
-var router = express.Router();
-
-const multer  = require('multer');
-const upload = multer({ dest: os.tmpdir() });
-
-router.post('/upload', upload.single('file'), function(req, res) {
-  const title = req.body.title;
-  const file = req.file;
-
-  console.log(title);
-  console.log(file);
-
-  res.sendStatus(200);
-});
-
-*/

@@ -1,6 +1,6 @@
-var connect = require('../../../../../common/schema').connect;
-var Document = require('../../../../../common/schema').Document;
-var EmbeddedDocument = require('../../../../../common/schema').EmbeddedDocument;
+var connect = require('../../../../../common/dataaccess').connect;
+var Document = require('../../../../../common/dataaccess').Document;
+var EmbeddedDocument = require('../../../../../common/dataaccess').EmbeddedDocument;
 
 /**
  * Manage the models

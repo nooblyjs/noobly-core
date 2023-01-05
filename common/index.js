@@ -34,16 +34,20 @@ module.exports = function (moduleManager) {
     _commonManager.initialise = function () {
 
         // The middleware utility
-        moduleManager.core.configuration = (( moduleManager.core.configuration != null) ?  moduleManager.core.configuration : require('./configuration/core')(moduleManager));
+        moduleManager.core.configuration = ((moduleManager.core.configuration != null) ? moduleManager.core.configuration : require('./configuration/core')(moduleManager));
 
         // The middleware utility
-        moduleManager.core.common.middleware = (( moduleManager.core.common.middleware != null) ?  moduleManager.core.common.middleware : require('./middleware/')(moduleManager));
+        moduleManager.core.common.middleware = ((moduleManager.core.common.middleware != null) ? moduleManager.core.common.middleware : require('./middleware/')(moduleManager));
 
         // The modules utility
-        moduleManager.core.common.modules = (( moduleManager.core.common.modules != null) ?  moduleManager.core.common.modules : require('./modules/')(moduleManager));
+        moduleManager.core.common.modules = ((moduleManager.core.common.modules != null) ? moduleManager.core.common.modules : require('./modules/')(moduleManager));
 
         // The schema utility
-        moduleManager.core.common.schema = (( moduleManager.core.common.schema != null) ?  moduleManager.core.common.schema : require('./schema/'));
+        moduleManager.core.common.dataaccess = ((moduleManager.core.common.dataaccess != null) ? moduleManager.core.common.dataaccess : require('./dataaccess/'));
+
+        // The interface manager
+        moduleManager.core.services.interface = ((moduleManager.core.services.interface != null) ? moduleManager.core.services.interface : require('./interface')(moduleManager));
+
 
     }()
 

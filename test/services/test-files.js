@@ -14,10 +14,14 @@ const events = require('events');
     moduleManager.parameters = {};
     moduleManager.core.common = {};
     moduleManager.events = new events.EventEmitter()
+
+    // Load the common utilities
     require('../../common')(moduleManager);
+
     var parameters = { 'basefolder': './data/' };
 
-    var service = require('../../services/files')(parameters);
+    var service = require('../../services/files')(moduleManager);
+    
     service.events.addListener('files-create', function (data) {
         console.log('EVENT RAISED :  File created ' + data)
     });

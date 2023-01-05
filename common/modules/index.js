@@ -1,16 +1,21 @@
 /**
- * @fileoverview This file allows for simple helper functions that we may need
+ * @fileoverview This file allows for simple helper functions for modules
  */
 'use strict';
+
 const events = require('events');
 const fs = require('fs');
 const path = require('path');
 
 /**
- * File Manager class
+ * Utilites Module
+ * @returns {object}
+ *  - isModule : This method is used to determine if the code is running directy or being run from a module in Node Modules
+ *  - loadChildModules : This method is used to load "require" modules  by reading the file system directly. It should lessen the code needed to be written
  */
 module.exports = function () {
 
+    // Instantiate the module
     var _utilities = {};
 
      /**

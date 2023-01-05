@@ -14,12 +14,14 @@ module.exports = function (serviceManager) {
 
     /** Variables section */
     var _middleware = {};
+
+    /** The in memory data store object */
     _middleware.datastore = {};
 
     /**
      * Has method checks if the data exists in the cache
      * @param {string} key The key to checked e.g. "key1"
-     * @param {function} callback The method called once the system has checked if the key exists 
+     * @param {function: optional} callback The method called once the system has checked if the key exists 
      *  e.g. : function(exists,err){ console.log(exists)} -- output: true 
     */
     _middleware.has = function (key, callback) {
@@ -32,7 +34,6 @@ module.exports = function (serviceManager) {
 
     /**
      * Set method sets the data in the cache
-     *
      * @param {string} key The key to checked e.g. "key1"
      * @param {mixed} value The value to be store in the cache e.g. "Hello World"
      * @param {function} callback The method called once the system has stored the data and confirms it has been stored 
@@ -49,7 +50,6 @@ module.exports = function (serviceManager) {
 
     /**
      * Get method
-     *
      * @param {string} key
      * @param {string} callback method
     */
@@ -63,7 +63,6 @@ module.exports = function (serviceManager) {
 
     /**
      * Delete method
-     *
      * @param {string} key
      * @param {string} callback method
     */

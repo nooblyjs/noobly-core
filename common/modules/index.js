@@ -1,7 +1,6 @@
 /**
- * This file allows for simple helper functions that we may need
+ * @fileoverview This file allows for simple helper functions that we may need
  */
-
 'use strict';
 const events = require('events');
 const fs = require('fs');
@@ -23,7 +22,23 @@ module.exports = function () {
     _utilities.isModule = function() {
         return module.path.indexOf("node_modules") > -1;
     }
-    
+
+
+    /**
+     * Add child modules to a module
+     * @param {object} parentModule 
+     * @param {string} modulegroupname 
+     * @param {string} modulePath 
+     */
+    _utilities.loadChildModules = function(parentModule, modulegroupname , modulePath) {
+        if (fs.existsSync(modulePath)) {
+            var childModules = fs.readdirSync(modulePath);
+            for (var i = 0; i < childModules.length; i++) {
+              parentModule[modulegroupname].push(require(childModules[i]));
+            }
+          }
+    }
+
   return _utilities
 }
 

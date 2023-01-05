@@ -39,9 +39,6 @@ module.exports = function (moduleManager) {
         // The interface manager
         moduleManager.core.services.interface = ((moduleManager.core.services.interface != null) ? moduleManager.core.services.interface : require('./interface')(moduleManager));
 
-        // The interface manager
-        moduleManager.core.services.dataaccess = ((moduleManager.core.services.dataaccess != null) ? moduleManager.core.services.dataaccess : require('./dataaccess')(moduleManager));
-
         // The Logging Manager   
         moduleManager.core.services.logging = ((moduleManager.core.services.logging != null) ? moduleManager.core.services.logging : require('./logging')(moduleManager));
 

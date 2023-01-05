@@ -3,7 +3,6 @@
  */
 'use strict';
 const events = require('events');
-const { hasUncaughtExceptionCaptureCallback } = require('process');
 const assert = require('assert').strict;
 
 /**

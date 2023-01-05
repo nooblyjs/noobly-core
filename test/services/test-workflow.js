@@ -11,11 +11,14 @@ const events = require('events');
     // Lets add some test parameters
     var moduleManager = {}
     moduleManager.uri ='nedb://data' 
+    moduleManager.core = {};
     moduleManager.core.services = {};
     moduleManager.parameters = {};
     moduleManager.core.common = {};
     moduleManager.events = new events.EventEmitter()
-    require('../../../common')(moduleManager);
+
+    // Load the common utilities
+    require('../../common')(moduleManager);
 
     // Add the event listener
     moduleManager.events.addListener('event', function (data) {
@@ -23,7 +26,7 @@ const events = require('events');
     });
 
     // intantiate the workflow service
-    var workflow = require('..')(moduleManager);
+    var workflow = require('../../services/workflow')(moduleManager);
     workflow.createPlan('firstplan', {
         transitions: [
             { name: "playthatsong", from: "on", to: "playing" },

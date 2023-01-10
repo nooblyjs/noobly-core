@@ -64,7 +64,7 @@ module.exports = function (moduleManager) {
      */
     _modelmanager.retrieve = function (filter, callback) {
         connect(_modelmanager.uri).then(function (db) {
-            Country.findOne(filter).then(function (data) {
+            Country.find(filter).then(function (data) {
                 callback(data);
             })
         });

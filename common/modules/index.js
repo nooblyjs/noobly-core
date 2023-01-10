@@ -15,34 +15,36 @@ const path = require('path');
  */
 module.exports = function () {
 
-    // Instantiate the module
-    var _utilities = {};
+  // Instantiate the module
+  var _utilities = {};
 
-     /**
-     * This utilitie allows us to find whether the project is running standalone or in modules. 
-     * This then allows static resources to be accessible no matter at what level you are running 
-     * be it nooblyjs or nooblyjs-module or any of the family of products that use
-     * the library
-     */
-    _utilities.isModule = function() {
-        return module.path.indexOf("node_modules") > -1;
+  /**
+  * This utilitie allows us to find whether the project is running standalone or in modules. 
+  * This then allows static resources to be accessible no matter at what level you are running 
+  * be it nooblyjs or nooblyjs-module or any of the family of products that use
+  * the library
+  */
+  _utilities.isModule = function () {
+    return module.path.indexOf("node_modules") > -1;
+  }
+
+
+  /**
+   * Add child modules to a module
+   * @param {object} parentModule 
+   * @param {string} modulegroupname 
+   * @param {string} modulePath 
+   */
+  _utilities.loadChildModules = function (parentModule, modulegroupname, modulePath) {
+    if (fs.existsSync(modulePath)) {
+      var childModules = fs.readdirSync(modulePath);
+      for (var i = 0; i < childModules.length; i++) {
+        if (fs.statSync(modulePath+ '/' + childModules[i]).isDirectory()) {
+          parentModule[modulegroupname].push(require(modulePath+ '/' + childModules[i]));
+        }
+      }
     }
-
-
-    /**
-     * Add child modules to a module
-     * @param {object} parentModule 
-     * @param {string} modulegroupname 
-     * @param {string} modulePath 
-     */
-    _utilities.loadChildModules = function(parentModule, modulegroupname , modulePath) {
-        if (fs.existsSync(modulePath)) {
-            var childModules = fs.readdirSync(modulePath);
-            for (var i = 0; i < childModules.length; i++) {
-              parentModule[modulegroupname].push(require(childModules[i]));
-            }
-          }
-    }
+  }
 
   return _utilities
 }

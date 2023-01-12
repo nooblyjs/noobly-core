@@ -35,7 +35,7 @@ module.exports = function() {
      * @param {function : optional}  callback 
      */
     _middleware.log = function(client, message, callback){
-        console.log("[" + datetoString(new Date()) + "]" + " [INFO] " + "[" + client +"] " +  message+ "\n");
+        term.white("[" + datetoString(new Date()) + "]" + " [INFO] " + "[" + client +"] " +  message+ "\n");
         callback(true);
     }
     

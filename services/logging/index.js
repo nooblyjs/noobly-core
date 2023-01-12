@@ -86,7 +86,7 @@ module.exports = function (moduleManager) {
     _serviceManager.warn = function (message, callback) {
         _serviceManager.raiseEvent('event', { type: 'log-warn', message: 'logged warning on ' + os.hostname, options: { level: 'warn', host: os.hostname } });
         if (callback != null) {
-            if (_serviceManager.minimumLoggingLevel >= 2) {
+            if (_serviceManager.minimumLoggingLevel >= 1) {
                 moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'warn').warn(os.hostname, message, callback);
             }
         } else {
@@ -107,7 +107,7 @@ module.exports = function (moduleManager) {
     _serviceManager.error = function (message, callback) {
         _serviceManager.raiseEvent('event', { type: 'log-error', message: 'logged error on ' + os.hostname, options: { level: 'warn', host: os.hostname } });
         if (callback != null) {
-            if (_serviceManager.minimumLoggingLevel >= 2) {
+            if (_serviceManager.minimumLoggingLevel >= 0) {
                 moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'error').error(os.hostname, message, callback);
             }
         } else {

@@ -1,3 +1,6 @@
+/**
+ * @fileoverview The following file exposes the console logging middleware
+ */
 'use strict';
 var term = require( 'terminal-kit' ).terminal ;
 
@@ -6,46 +9,58 @@ var term = require( 'terminal-kit' ).terminal ;
  */
 module.exports = function() {
     
-    var _console = {};
+    // The object
+    var _middleware = {};
     
+    // Format a date
     var datetoString = function (date){
       return date .toISOString().replace(/T/, ' ').replace(/\..+/, '') 
     }
     
     /**
      * Log a debug message
-     * @client {string} cl
+     * @param {string} client that has logged
      * @param {string} message
+     * @param {function : optional}  callback 
      */
-     _console.debug = function(client, message){
+    _middleware.debug = function(client, message, callback){
         term.grey("[" + datetoString(new Date()) + "]" + " [DEBUG] " + "[" + client +"] " +  message + '\n');
+        callback(true);
     }
 
     /**
      * Log a message
-     * @client {string} cl
+     * @param {string} client that has logged
      * @param {string} message
+     * @param {function : optional}  callback 
      */
-    _console.log = function(client, message){
-        console.log("[" + datetoString(new Date()) + "]" + " [INFO] " + "[" + client +"] " +  message);
+    _middleware.log = function(client, message, callback){
+        console.log("[" + datetoString(new Date()) + "]" + " [INFO] " + "[" + client +"] " +  message+ "\n");
+        callback(true);
     }
     
      /**
      *  Log a error
+     * @param {string} client that has logged
      * @param {string} message
+     * @param {function : optional}  callback 
      */
-    _console.warn = function(client, message){
-        term.red("[" + datetoString(new Date()) + "]" + " [WARN] " + "[" + client + "] " +  message);
+     _middleware.warn = function(client, message, callback){
+        term.red("[" + datetoString(new Date()) + "]" + " [WARN] " + "[" + client + "] " +  message+ "\n");
+        callback(true);
     }
     
     /**
      *  Log a error
+     * @param {string} client that has logged
      * @param {string} message
+     * @param {function : optional}  callback 
      */
-    _console.error = function(client, message){
-        term.bold.red("[" + datetoString(new Date()) + "]" + " [ERROR] " + "[" +client +"] " +  message);
+    _middleware.error = function(client, message, callback){
+        term.bold.red("[" + datetoString(new Date()) + "]" + " [ERROR] " + "[" +client +"] " +  message + "\n");
+        callback(true);
     }
     
-    return _console;
+    return _middleware;
 };
 

@@ -21,109 +21,126 @@ module.exports = function (moduleManager) {
     // Initiate the object 
     var _serviceManager = {};
 
-    // Extract the configuration
-    _serviceManager.controller = moduleManager.core.configuration.has('core.logging.contoller') ? require(moduleManager.core.configuration.get('core.logging.contoller')) : require('./middleware/core')(moduleManager);
-    
-    // Extract the minimum logging level
-    _serviceManager.minimumLoggingLevel = moduleManager.core.configuration.has('core.logging.logginglevel') ? moduleManager.core.configuration.get('core.logging.logginglevel') : 2;
-
-    // Initialise the event emitter 
-    _serviceManager.events = new events.EventEmitter();
-
-    // Load the model manager
-    _serviceManager.modelManager = require('./models')(moduleManager)
-
-    // Load the route manager
-    _serviceManager.routeManager = require('./routes')(moduleManager)
-
-    // Load the views manager
-    _serviceManager.routeManager = require('./views')(moduleManager)
+    // Initialise the middleware container
+    _serviceManager.middleware = [];
 
     /**
-     * Log a debug message
-     * @param {string} message
-     */
-    _serviceManager.debugAsync = function (message) {
-        if (_serviceManager.minimumLoggingLevel >= 3) {
-            _serviceManager.events.emit('log-info', message);
-            _serviceManager.controller.debug(os.hostname, message);
-        }
+     * Method : RaiseEvent
+     * Note that there may be multiple event middleware's to fire
+     * @param {string} name : The name of the even being fired
+     * @param {object} options : An object holding the specific parameters
+    */
+    _serviceManager.raiseEvent = function (name, options) {
+        moduleManager.core.common.middleware.retrieve(_serviceManager, 'raiseEvent').forEach(function (item, index) {
+            item.raiseEvent(name, options);
+        });
     }
 
     /**
      * Log a debug message
      * @param {string} message
+     * @param {function : optional}  callback 
      */
     _serviceManager.debug = function (message, callback) {
-        if (_serviceManager.minimumLoggingLevel >= 3) {
-            _serviceManager.events.emit('log-info', message);
-            _serviceManager.controller.debug(os.hostname, message);
+        _serviceManager.raiseEvent('event', { type: 'log-debug', message: 'logged debug on ' + os.hostname, options: { level: 'debug', host: os.hostname } });
+        if (callback != null) {
+            if (_serviceManager.minimumLoggingLevel >= 3) {
+                moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'debug').debug(os.hostname, message, callback);
+            }
+        } else {
+            return new Promise(
+                (resolve, reject) => {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'debug').debug(os.hostname, message, function ({ options }) {
+                        resolve({ options });
+                    })
+                });
         }
     }
 
     /**
      * Log a info message
      * @param {string} message
-     */
-    _serviceManager.logAsync = function (message) {
-        if (_serviceManager.minimumLoggingLevel >= 2) {
-            _serviceManager.events.emit('log-info', message);
-            _serviceManager.controller.log(os.hostname, message);
-        }
-    }
-
-    /**
-     * Log a info message
-     * @param {string} message
+     * @param {function : optional}  callback 
      */
     _serviceManager.log = function (message, callback) {
-        if (_serviceManager.minimumLoggingLevel >= 2) {
-            _serviceManager.events.emit('log-info', message);
-            _serviceManager.controller.log(os.hostname, message);
+        _serviceManager.raiseEvent('event', { type: 'log-debug', message: 'logged info on ' + os.hostname, options: { level: 'info', host: os.hostname } });
+        if (callback != null) {
+            if (_serviceManager.minimumLoggingLevel >= 2) {
+                moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'log').log(os.hostname, message, callback);
+            }
+        } else {
+            return new Promise(
+                (resolve, reject) => {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'log').log(os.hostname, message, function ({ options }) {
+                        resolve({ options });
+                    })
+                });
         }
     }
-
-    /**
-    * Log a warning
-    * @param {string} message
-    */
-    _serviceManager.warn = function (message) {
-        if (_serviceManager.minimumLoggingLevel >= 1) {
-            _serviceManager.events.emit('log-warn', message);
-            _serviceManager.controller.warn(os.hostname, message);
-        }
-    }
-
 
     /**
     *  Log a warning
-    * @param {string} message
+     * @param {string} message
+     * @param {function : optional}  callback 
     */
-    _serviceManager.warn = function (message) {
-        if (_serviceManager.minimumLoggingLevel >= 1) {
-            _serviceManager.events.emit('log-warn', message);
-            _serviceManager.controller.warn(os.hostname, message);
+    _serviceManager.warn = function (message, callback) {
+        _serviceManager.raiseEvent('event', { type: 'log-warn', message: 'logged warning on ' + os.hostname, options: { level: 'warn', host: os.hostname } });
+        if (callback != null) {
+            if (_serviceManager.minimumLoggingLevel >= 2) {
+                moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'warn').warn(os.hostname, message, callback);
+            }
+        } else {
+            return new Promise(
+                (resolve, reject) => {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'warn').warn(os.hostname, message, function ({ options }) {
+                        resolve({ options });
+                    })
+                });
         }
     }
 
-
     /**
      * Log an error
      * @param {string} message
+     * @param {function : optional}  callback 
      */
-    _serviceManager.error = function (message) {
-        _serviceManager.events.emit('log-error', message);
-        _serviceManager.controller.error(os.hostname, message);
+    _serviceManager.error = function (message, callback) {
+        _serviceManager.raiseEvent('event', { type: 'log-error', message: 'logged error on ' + os.hostname, options: { level: 'warn', host: os.hostname } });
+        if (callback != null) {
+            if (_serviceManager.minimumLoggingLevel >= 2) {
+                moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'error').error(os.hostname, message, callback);
+            }
+        } else {
+            return new Promise(
+                (resolve, reject) => {
+                    moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'error').error(os.hostname, message, function ({ options }) {
+                        resolve({ options });
+                    })
+                });
+        }
     }
 
     /**
-     * Log an error
-     * @param {string} message
-     */
-    _serviceManager.error = function (message) {
-        _serviceManager.events.emit('log-error', message);
-        _serviceManager.controller.error(os.hostname, message);
-    }
+    * Initialise Method
+    */
+    _serviceManager.initialise = function () {
+
+        // Use the default middleware
+        moduleManager.core.common.middleware.use(_serviceManager, moduleManager.core.configuration.has('core.logging.middleware') ? require(moduleManager.core.configuration.get('core.caching.middleware')) : require('./middleware/core')(moduleManager))
+
+        // Use the default event manager
+        moduleManager.core.common.middleware.use(_serviceManager, require('../../common/events/events.js')(moduleManager));
+
+        // Load the model manager
+        _serviceManager.modelManager = require('./models')(moduleManager)
+
+        // Load the route manager
+        _serviceManager.routeManager = require('./routes')(moduleManager)
+
+        // Load the views manager
+        _serviceManager.viewManager = require('./views')(moduleManager)
+
+    }();
 
     return _serviceManager;
 };

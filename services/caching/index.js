@@ -120,7 +120,7 @@ module.exports = function (moduleManager) {
     _serviceManager.initialise = function () {
 
         // Use the default middleware
-        moduleManager.core.common.middleware.use(_serviceManager,moduleManager.core.configuration.has('core.caching.contoller') ? require(moduleManager.core.configuration.get('core.caching.contoller')) : require('./middleware/core')(moduleManager))
+        moduleManager.core.common.middleware.use(_serviceManager,moduleManager.core.configuration.has('core.caching.middleware') ? require(moduleManager.core.configuration.get('core.caching.middleware')) : require('./middleware/core')(moduleManager))
     
         // Use the default event manager
         moduleManager.core.common.middleware.use(_serviceManager,require('../../common/events/events.js')(moduleManager));

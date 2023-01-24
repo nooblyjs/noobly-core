@@ -2,25 +2,25 @@
  * @fileoverview The following file exposes the console logging middleware
  */
 'use strict';
-var term = require( 'terminal-kit' ).terminal ;
+var term = require( 'terminal-kit' ).terminal;
 
 /**
- * The embedded logging provider exposes a simple con
+ * The embedded logging provider exposes a logging to console implementation for the logging modeul
  */
 module.exports = function() {
     
-    // The object
+    // The middleware
     var _middleware = {};
     
-    // Format a date
+    // Format the date for the logging
     var datetoString = function (date){
       return date .toISOString().replace(/T/, ' ').replace(/\..+/, '') 
     }
     
     /**
-     * Log a debug message
+     * Log a debug message to the console
      * @param {string} client that has logged
-     * @param {string} message
+     * @param {string} The message to be logged
      * @param {function : optional}  callback 
      */
     _middleware.debug = function(client, message, callback){
@@ -29,9 +29,9 @@ module.exports = function() {
     }
 
     /**
-     * Log a message
+     * Log and information message to the console
      * @param {string} client that has logged
-     * @param {string} message
+     * @param {string} The message to be logged
      * @param {function : optional}  callback 
      */
     _middleware.log = function(client, message, callback){
@@ -40,9 +40,9 @@ module.exports = function() {
     }
     
      /**
-     *  Log a error
+     *  Log a warning message to the console
      * @param {string} client that has logged
-     * @param {string} message
+     * @param {string} The message to be logged
      * @param {function : optional}  callback 
      */
      _middleware.warn = function(client, message, callback){
@@ -51,10 +51,10 @@ module.exports = function() {
     }
     
     /**
-     *  Log a error
+     *  Log an error message to the console
      * @param {string} client that has logged
-     * @param {string} message
-     * @param {function : optional}  callback 
+     * @param {string} The message to be logged
+     * @param {function : optional}  callback  
      */
     _middleware.error = function(client, message, callback){
         term.bold.red("[" + datetoString(new Date()) + "]" + " [ERROR] " + "[" +client +"] " +  message + "\n");

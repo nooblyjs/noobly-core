@@ -33,6 +33,7 @@
     "node-schedule": "*",
     "nodejs-state-machine": "*",
     "nodemon": "*",
+    "openai": "^3.1.0",
     "passport": "*",
     "passport-google-oauth20": "*",
     "pg": "*",

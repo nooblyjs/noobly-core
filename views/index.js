@@ -10,9 +10,6 @@ const express = require('express');
  */
 module.exports = function (moduleManager) {
 
-    // Determine if we are running as a module
-    var isModule = 'isModule' in moduleManager.parameters ? moduleManager.parameters['isModule'] : null
-
     /** Initiate the object */
     var _viewManager = {};
 
@@ -27,10 +24,10 @@ module.exports = function (moduleManager) {
         _interfaceManager.app().use(express.json())
         
         // Register the UI css and js to be used by all backoffice interfaces
-        _interfaceManager.registerSite('/lib', (isModule ? './node_modules/noobly-core' : '.') + '/views/lib');
+        _interfaceManager.registerSite('/lib', (moduleManager.core.common.modules.isModule() ? './node_modules/noobly-core' : '.') + '/views/lib');
         
         // Register the admin views
-        _interfaceManager.registerSite('/backoffice', (isModule ? './node_modules/noobly-core' : '.') + '/views/backoffice')
+        _interfaceManager.registerSite('/backoffice', (moduleManager.core.common.modules.isModule() ? './node_modules/noobly-core' : '.') + '/views/backoffice')
 
         // If we are running as a standalone app then redirect too '/administrator'
         if (!isModule){

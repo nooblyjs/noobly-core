@@ -30,7 +30,7 @@ module.exports = function (moduleManager) {
         _interfaceManager.registerSite('/backoffice', (moduleManager.core.common.modules.isModule() ? './node_modules/noobly-core' : '.') + '/views/backoffice')
 
         // If we are running as a standalone app then redirect too '/administrator'
-        if (!isModule){
+        if (!moduleManager.core.common.modules.isModule()){
             _interfaceManager.registerSite('/',  './views/redirect')   
         }
 

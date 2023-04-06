@@ -14,3 +14,16 @@ The following services are available for any application to use:
 * **Caching** : The caching service enables caching operations. The default implementation uses a volatile in memory implementation.
 
 * **Data Access** : The data access service enables database operations. The default implementation stores data on the local drive or In Memory (volatile). 
+
+---
+
+## Installing
+
+``` 
+git fetch https://github.com/nooblyjs/noobly-core.git
+cd ./noobly-core
+npm install
+npm -i g npm
+node ./app.js
+
+```

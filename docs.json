@@ -1,0 +1,8 @@
+{
+    "source": {
+        "include": [],
+        "exclude": [ "./src/views/lib/*","./src/views/backoffice/*"],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "/workspaces/noobly-core/src/views/lib/"
+    }
+}

@@ -24,14 +24,15 @@ module.exports = function (moduleManager) {
         _interfaceManager.app().use(express.json())
         
         // Register the UI css and js to be used by all backoffice interfaces
-        _interfaceManager.registerSite('/lib', (moduleManager.core.common.modules.isModule() ? './node_modules/noobly-core' : '.') + '/views/lib');
+        _interfaceManager.registerSite('/lib', (moduleManager.core.common.modules.isModule() ? './node_modules/noobly-core' : '.') + '/src/views/lib');
+        console.log((moduleManager.core.common.modules.isModule() ? './node_modules/noobly-core' : '.') + './src/views/lib')
         
         // Register the admin views
-        _interfaceManager.registerSite('/backoffice', (moduleManager.core.common.modules.isModule() ? './node_modules/noobly-core' : '.') + '/views/backoffice')
+        _interfaceManager.registerSite('/backoffice', (moduleManager.core.common.modules.isModule() ? './node_modules/noobly-core' : '.') + '/src/views/backoffice')
 
         // If we are running as a standalone app then redirect too '/administrator'
         if (!moduleManager.core.common.modules.isModule()){
-            _interfaceManager.registerSite('/',  './views/redirect')   
+            _interfaceManager.registerSite('/',  './src/views/redirect')   
         }
 
         // Raise the initalised event

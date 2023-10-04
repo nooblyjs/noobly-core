@@ -9,7 +9,7 @@
  application.events = new events.EventEmitter();
  application.parameters = {};
  
- // Instantiate the Shnakkydoodle Framework
+ // Instantiate the Noobly Framework
  var noobly = require('.')(application);
  
  /**

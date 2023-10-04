@@ -49,19 +49,19 @@ module.exports = function (moduleManager) {
   noobly.initialise = function () {
 
     // Load the common module
-    require('./common')(noobly);
+    require('./src/common')(noobly);
 
     // Load the models module
-    require('./models')(noobly);
+    require('./src/models')(noobly);
 
     // Load the services module
-    require('./services')(noobly);
+    require('./src/services')(noobly);
 
     // Load the models module
-    require('./routes')(noobly);
+    require('./src/routes')(noobly);
 
     // Load the models module
-    require('./views')(noobly);
+    require('./src/views')(noobly);
 
     // Print the status
     noobly.printStatus()

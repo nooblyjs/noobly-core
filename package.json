@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha \"*test/*.js\" --recursive"
+    "test": "mocha \"*test/*.js\" --recursive",
+    "docs": "jsdoc src -r -c docs.json -d docs"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,6 @@
     "depd": "*",
     "express": "*",
     "express-session": "*",
-    "jsdoc": "*",
     "liqe": "*",
     "lodash": "*",
     "mocha-junit-reporter": "*",
@@ -42,6 +42,7 @@
     "terminal-kit": "*"
   },
   "devDependencies": {
+    "jsdoc": "^4.0.2",
     "mocha": "*",
     "request": "*"
   }

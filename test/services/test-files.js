@@ -4,7 +4,7 @@ const events = require('events');
 (function () {
 
     console.log('========================================================================')
-    console.log('=  TESTING nooblyjs.core file service : Base Implementation (core)=')
+    console.log('=  TESTING nooblyjs.core file service : Base Implementation (core)     =')
     console.log('========================================================================')
 
     // Instantiate the modulemanager

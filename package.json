@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha \"*test/*.js\" --recursive",
-    "docs": "jsdoc src -r -c docs.json -d docs"
+    "test": "mocha \"test\" --recursive",
+    "docs": "jsdoc src -r -c docs.json -d docs",
+    "npm" : "npm publish"
   },
   "repository": {
     "type": "git",

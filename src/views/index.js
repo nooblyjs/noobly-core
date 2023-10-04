@@ -25,7 +25,6 @@ module.exports = function (moduleManager) {
         
         // Register the UI css and js to be used by all backoffice interfaces
         _interfaceManager.registerSite('/lib', (moduleManager.core.common.modules.isModule() ? './node_modules/noobly-core' : '.') + '/src/views/lib');
-        console.log((moduleManager.core.common.modules.isModule() ? './node_modules/noobly-core' : '.') + './src/views/lib')
         
         // Register the admin views
         _interfaceManager.registerSite('/backoffice', (moduleManager.core.common.modules.isModule() ? './node_modules/noobly-core' : '.') + '/src/views/backoffice')

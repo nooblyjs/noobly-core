@@ -33,8 +33,8 @@
  
      // Launch a test server
      noobly.core.services.interface.listen(process.env.PORT || noobly.core.configuration.get('server.port'), function (port) {
-        noobly.core.services.logging.warn(noobly.core.configuration.get('application.name') + ': Backoffice: http://127.0.0.1:' + port + ' in ' + process.cwd());
-        noobly.core.services.logging.warn(noobly.core.configuration.get('application.name') + ': API: http://127.0.0.1:' + port + '/backoffice/api/docs/');
+        noobly.core.services.logging.warn(noobly.core.configuration.get('application.name') + ': Backoffice:\t http://127.0.0.1:' + port + ' in ' + process.cwd());
+        noobly.core.services.logging.warn(noobly.core.configuration.get('application.name') + ': API:\t  http://127.0.0.1:' + port + '/backoffice/api/docs/');
      });
  
  }();

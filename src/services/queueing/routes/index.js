@@ -27,35 +27,35 @@ module.exports = function (serviceManager) {
             _interfaceManager.app().use(express.json());
 
             // The queue enqueue command
-            _interfaceManager.app().route('/administrator/queueing/queue/api/:queue').post(function (req, res) {
+            _interfaceManager.app().route('/backoffice/queueing/queue/api/:queue').post(function (req, res) {
                 _serviceManager.core.services.queueing.enqueue(req.params.queue, req.body.data)
                 res.status(200).send('success');
             });
     
             // The queue dequeue command
-            _interfaceManager.app().route('/administrator/queueing/api/dequeue/:queue').get(function (req, res) {
+            _interfaceManager.app().route('/backoffice/queueing/api/dequeue/:queue').get(function (req, res) {
                 _serviceManager.core.services.queueing.dequeue(req.params.queue).then(data => res.status(200).send(data));
             });
     
             // The topic subscribe command
-            _interfaceManager.app().route('/administrator/topics/api/subscribe/:topic/:subscriber').get(function (req, res) {
+            _interfaceManager.app().route('/backoffice/topics/api/subscribe/:topic/:subscriber').get(function (req, res) {
                 _serviceManager.core.services.queueing.subscribe(req.params.topic, req.params.subscriber)
                 res.status(200).send('success');
             });
     
             // The topics send command
-            _interfaceManager.app().route('/administrator/topics/api/send/:topic').post(function (req, res) {
+            _interfaceManager.app().route('/backoffice/topics/api/send/:topic').post(function (req, res) {
                 _serviceManager.core.services.queueing.send(req.params.topic, req.body.data)
                 res.status(200).send('success');
             });
     
             // The topic subscribe command
-            _interfaceManager.app().route('/administrator/topics/api/receive/:topic/:subscriber').get(function (req, res) {
+            _interfaceManager.app().route('/backoffice/topics/api/receive/:topic/:subscriber').get(function (req, res) {
                 _serviceManager.core.services.queueing.receive(req.params.topic, req.params.subscriber).then(data => res.status(200).send(data));
             });
     
             // The server ping
-            _interfaceManager.app().route('/administrator/queueing/api/status').get(function (req, res) {
+            _interfaceManager.app().route('/backoffice/queueing/api/status').get(function (req, res) {
                 res.status(200).send('success');
             });
         }

@@ -3,10 +3,10 @@ const express = require('express');
 
 /**
    * Initailise the cache api endpoint. The following endpoints are available
-   *  - POST https://domain/administrator/logging/api/debug : log a debug message
-   *  - POST https://domain/administrator/logging/api/info : log a info message
-   *  - POST https://domain/administrator/logging/api/warn : log a warn message
-   *  - POST https://domain/administrator/logging/api/error : log a error message
+   *  - POST https://domain/backoffice/logging/api/debug : log a debug message
+   *  - POST https://domain/backoffice/logging/api/info : log a info message
+   *  - POST https://domain/backoffice/logging/api/warn : log a warn message
+   *  - POST https://domain/backoffice/logging/api/error : log a error message
    * @param {object} servicemanager
    * @returns {object} _routeManager
    */
@@ -25,7 +25,7 @@ module.exports = function (serviceManager) {
             _interfaceManager.app().use(express.json())
 
             // Register the logging endpoints
-            _interfaceManager.app().route('/administrator/logging/api/:level').post(function (req, res) {
+            _interfaceManager.app().route('/backoffice/logging/api/:level').post(function (req, res) {
                 switch (req.params.level.toUpperCase()) {
                     case 'INFO':
                         serviceManager.core.services.logging.debug(req.body.data);
@@ -46,7 +46,7 @@ module.exports = function (serviceManager) {
             });
 
             // Register the status endpoints
-            _interfaceManager.app().route('/administrator/logging/api/status').get(function (req, res) {
+            _interfaceManager.app().route('/backoffice/logging/api/status').get(function (req, res) {
                 res.status(200);
                 res.send('success');
             });

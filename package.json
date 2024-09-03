@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha \"test\" --recursive",
     "docs": "jsdoc src -r -c docs.json -d docs",
-    "npm": "npm publish"
+    "publish": "npm publish",
+    "publish-atlas": "xcopy \"../noobly-core\" \"../atlas-server/node_modules/noobly-core/\" /S /I /W"
   },
   "repository": {
     "type": "git",

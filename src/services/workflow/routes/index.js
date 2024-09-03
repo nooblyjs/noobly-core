@@ -21,13 +21,13 @@ module.exports = function (moduleManager) {
         if (_interfaceManager != null) {
 
             // The workflow create command function
-            _interfaceManager.app().route('/administrator/workflow/api/plan/{plan}').post(function (req, res) {
+            _interfaceManager.app().route('/backoffice/workflow/api/plan/{plan}').post(function (req, res) {
                 serviceManager.createPlan(req.params.plan, req.body.data).then(success=>res.status(200).send(success));
             });
 
 
             // The workflow status
-            _interfaceManager.app().route('/administrator/workflow/api/status').get(function (req, res) {
+            _interfaceManager.app().route('/backoffice/workflow/api/status').get(function (req, res) {
                 res.status(200).send('success');
             });
 

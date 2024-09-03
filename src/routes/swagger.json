@@ -5,7 +5,7 @@
     "title": "The nooblyjs Server API's",
     "description": "This project ecapsulates all the api methods for the nooblyjs server"
   },
-  "basePath": "/administrator/",
+  "basePath": "/backoffice/",
   "tags": [
     {
       "name": "Logging",

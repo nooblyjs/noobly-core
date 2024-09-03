@@ -25,7 +25,7 @@ module.exports = function (moduleManager) {
         if (_interfaceManager != null) {
 
             // The server ping
-            _interfaceManager.app().route('/administrator/security/api/status').get(function (req, res) {
+            _interfaceManager.app().route('/backoffice/security/api/status').get(function (req, res) {
                 res.status(200).send('success');
             });
         }

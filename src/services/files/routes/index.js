@@ -25,7 +25,7 @@ module.exports = function (moduleManager) {
         if (_interfaceManager != null) {
             
             // Return the success endpoint
-            _interfaceManager.app().route('/administrator/caching/api/status').get(function (req, res) {
+            _interfaceManager.app().route('/backoffice/caching/api/status').get(function (req, res) {
                 res.status(200).send('success');
             });
 

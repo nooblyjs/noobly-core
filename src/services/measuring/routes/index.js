@@ -3,7 +3,7 @@ const express = require('express');
 
 /**
    * Initailise the cache api endpoint. The following endpoints are available
-   *  - GET https://domain/administrator/measuring/api/status : returns a "success" 
+   *  - GET https://domain/backoffice/measuring/api/status : returns a "success" 
    * @param {object} servicemanager
    * @returns {object} _routeManager
    */
@@ -21,7 +21,7 @@ module.exports = function (moduleManager) {
         if (_interfaceManager != null) {
 
             // The server ping
-            _interfaceManager.app().route('/administrator/measuring/api/status').get(function (req, res) {
+            _interfaceManager.app().route('/backoffice/measuring/api/status').get(function (req, res) {
                 res.status(200).send('success');
             });
         }

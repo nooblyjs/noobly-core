@@ -15,5 +15,5 @@ var noobly = require('..')(application);
  * Initialise the server
  */
 application.initialise = function () {
-
+    noobly.initialise();
 }();

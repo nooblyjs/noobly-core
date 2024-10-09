@@ -17,6 +17,8 @@
   */
   application.initialise = function () {
 
+    noobly.initialise();
+
      // Add the event listener
      noobly.core.events.addListener('event', function (data) {
       noobly.core.services.logging.debug('Event: type: ' + data.type + ' message: ' + data.message);

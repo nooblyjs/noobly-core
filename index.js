@@ -22,11 +22,29 @@ module.exports = function (moduleManager) {
   noobly.core.views = ((noobly.core.views != null) ? noobly.core.views : {});
   noobly.core.middleware = [];
 
+  // Instaniate Module Manager 
+  moduleManager = (moduleManager != null ? moduleManager: {});
+
   // Set the parameters object from the parent object else create one
   noobly.parameters = ((moduleManager.parameters != null) ? moduleManager.parameters : {});
 
   // Set the event engine
   noobly.core.events = (moduleManager.events != null ? moduleManager.events : new events.EventEmitter());
+
+  // Load the common module
+  require('./src/common')(noobly);
+
+  // Load the models module
+  require('./src/models')(noobly);
+
+  // Load the services module
+  require('./src/services')(noobly);
+
+  // Load the models module
+  require('./src/routes')(noobly);
+
+  // Load the models module
+  require('./src/views')(noobly);
 
   /**
    * Helper method to show any startup information
@@ -54,25 +72,12 @@ module.exports = function (moduleManager) {
    */
   noobly.initialise = function () {
 
-    // Load the common module
-    require('./src/common')(noobly);
-
-    // Load the models module
-    require('./src/models')(noobly);
-
-    // Load the services module
-    require('./src/services')(noobly);
-
-    // Load the models module
-    require('./src/routes')(noobly);
-
-    // Load the models module
-    require('./src/views')(noobly);
-
-    // Print the status
-    noobly.printStatus(process.env.PORT || noobly.core.configuration.get('server.port'))
-
-  }();
+    // Indicate the services and their configuration
+    if (noobly.core.configuration.get('server.port') != null){
+      noobly.printStatus(process.env.PORT || noobly.core.configuration.get('server.port'))
+    }
+  
+  };
 
   return noobly;
 }

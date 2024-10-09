@@ -50,7 +50,6 @@ module.exports = function (parameters) {
      * @param {function} callback
      */
     _controller.append = function (filePath, content, callback) {
-        console.log(filePath);
         if (!fs.existsSync(path.dirname(filePath))){
             fs.mkdirSync(path.dirname(filePath), { recursive: true });
         }
@@ -73,6 +72,7 @@ module.exports = function (parameters) {
      * @param {function} callback
     */
     _controller.delete = function (filePath, callback) {
+        console.log(filePath);
         fs.unlink(filePath,callback);
     }
    

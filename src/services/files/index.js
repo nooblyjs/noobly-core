@@ -55,7 +55,6 @@ module.exports = function (moduleManager) {
      * @param {function : optional} callback
     */
     _serviceManager.create = function (filename, content, callback) {
-        console.log( moduleManager.core.common.middleware);
         _serviceManager.raiseEvent('event', { type: 'files-create', message: 'file created: ' + filename, options: { filename } });
         if (callback != null) {
             moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').create(filename, content, callback)
@@ -144,7 +143,8 @@ module.exports = function (moduleManager) {
                     moduleManager.core.common.middleware.retrieveFirst(_serviceManager, 'readDirectory').readFile(filename, function (data) {
                         resolve(data);
                     })
-                });
+                })
+            ;
         }
     }
 
@@ -186,13 +186,13 @@ module.exports = function (moduleManager) {
         }
     }
 
+    // Use the default middleware
+    moduleManager.core.common.middleware.use(_serviceManager, moduleManager.core.configuration.has('core.files.contoller') ? require(moduleManager.core.configuration.get('core.files.contoller')) : require('./middleware/core')(moduleManager))
+
     /**
     * Initialise Method
     */
     _serviceManager.initialise = function () {
-
-        // Use the default middleware
-        moduleManager.core.common.middleware.use(_serviceManager, moduleManager.core.configuration.has('core.files.contoller') ? require(moduleManager.core.configuration.get('core.files.contoller')) : require('./middleware/core')(moduleManager))
 
         // Use the default event manager
         moduleManager.core.common.middleware.use(_serviceManager, require('../../common/events/events.js')(moduleManager));
@@ -206,7 +206,7 @@ module.exports = function (moduleManager) {
         // Load the views manager
         _serviceManager.viewManager = require('./views')(moduleManager)
 
-    }();
+    };
 
     return _serviceManager;
 };

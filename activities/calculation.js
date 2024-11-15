@@ -1,6 +1,5 @@
 const { parentPort, workerData } = require("worker_threads");
 
-
 parentPort.postMessage(getFib(workerData.number))
 
 function getFib(num) {

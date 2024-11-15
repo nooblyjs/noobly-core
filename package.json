@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "node ./app.js",
     "test": "mocha \"test\" --recursive",
     "docs": "jsdoc src -r -c docs.json -d docs",
     "publish": "npm publish",
@@ -33,6 +34,7 @@
     "multer": "*",
     "nedb": "*",
     "node-schedule": "*",
+    "nodeannotations": "^1.0.3",
     "nodejs-state-machine": "*",
     "nodemon": "*",
     "openai": "^4.20.1",
@@ -44,6 +46,7 @@
     "terminal-kit": "*"
   },
   "devDependencies": {
+    "concurrently": "^9.0.1",
     "jsdoc": "^4.0.2",
     "mocha": "*",
     "request": "*"

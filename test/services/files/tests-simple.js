@@ -3,7 +3,7 @@
 (function () {
 
     // Instantiate the noobly Framework
-    var noobly = require('../../')();
+    var noobly = require('../../..')();
     var service = noobly.core.services.files;
 
     // Async method for doing file operations

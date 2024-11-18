@@ -25,30 +25,29 @@ module.exports = function (serviceManager) {
         if (_interfaceManager != null) {
 
             // The cache has command
-            _interfaceManager.app().route('/backoffice/caching/api/has/:key').get(function (req, res) {
-                serviceManager.has(req.params.key)
-                serviceManager.has(req.params.key).then(exists => res.status(200).send(exists));
+            _interfaceManager.app().route('/services/caching/api/has/:key').get(function (req, res) {
+                serviceManager.core.services.caching.has(req.params.key).then(exists => res.status(200).send(exists));
             });
 
             // The cache get command
-            _interfaceManager.app().route('/backoffice/caching/api/get/:key').get(function (req, res) {
+            _interfaceManager.app().route('/services/caching/api/get/:key').get(function (req, res) {
                 serviceManager.core.services.caching.get(req.params.key).then(data => res.status(200).send(data));
             });
 
             // The cache set command
-            _interfaceManager.app().route('/backoffice/caching/api/set/:key').post(function (req, res) {
+            _interfaceManager.app().route('/services/caching/api/set/:key').post(function (req, res) {
                 serviceManager.core.services.caching.set(req.params.key, req.body.data)
                 res.status(200).send('success');
             });
 
             // The cache delete command
-            _interfaceManager.app().route('/backoffice/caching/api/delete/:key').delete(function (req, res) {
+            _interfaceManager.app().route('/services/caching/api/delete/:key').delete(function (req, res) {
                 serviceManager.core.services.caching.del(req.params.key)
                 res.status(200).send('success');
             });
             
             // The server ping
-            _interfaceManager.app().route('/backoffice/caching/api/status').get(function (req, res) {
+            _interfaceManager.app().route('/services/caching/api/status').get(function (req, res) {
                 res.status(200).send('success');
             });
         }

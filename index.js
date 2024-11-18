@@ -55,7 +55,7 @@ module.exports = function (moduleManager) {
     console.log(': Marketing: http://127.0.0.1:' + port + '/');
     console.log(': Application: http://127.0.0.1:' + port + '/application/');
     console.log(': Backoffice: http://127.0.0.1:' + port + '/backoffice/');
-    console.log(': API: http://127.0.0.1:' + port + '/backoffice/api/docs/');
+    console.log(': API: http://127.0.0.1:' + port + '/services/api/docs/');
     console.log('')   
     console.log(': Logging API: http://127.0.0.1:' + port + '/logging/api/status/');
     console.log('========================================================================')

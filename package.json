@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "node ./app.js",
-    "test": "mocha \"test\" --recursive",
-    "docs": "jsdoc src -r -c docs.json -d docs",
+    "test": "mocha .\\test\\test.js ",
+    "docs": "jsdoc -r ./src/ -c docs.json -d docs",
     "publish": "npm publish",
     "publish-atlas": "xcopy \"../noobly-core\" \"../atlas-server/node_modules/noobly-core/\" /S /I /W"
   },

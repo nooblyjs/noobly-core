@@ -1,19 +1,8 @@
-/**
- * @fileoverview The following file is used to test the use of the noobly core framework
- */
-'use strict';
-const events = require('events');
-
-var application = {};
-application.events = new events.EventEmitter();
-application.parameters = {};
-
-// Instantiate the noobly Framework
-var noobly = require('..')(application);
-
-/**
- * Initialise the server
- */
-application.initialise = function () {
-    noobly.initialise();
-}();
+var assert = require('assert');
+describe('Array', function () {
+  describe('#indexOf()', function () {
+    it('should return -1 when the value is not present', function () {
+      assert.equal([1, 2, 3].indexOf(4), -1);
+    });
+  });
+});

@@ -14,6 +14,8 @@
  
  /**
   * Initialise the server
+  * @Request("/controller/endpoint/param")
+  * @Path(dir="/home/user1", param="somevalue")
   */
   application.initialise = function () {
 

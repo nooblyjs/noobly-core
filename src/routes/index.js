@@ -32,7 +32,7 @@ module.exports = function (moduleManager) {
 
         // Register the Administrator API Swagger
         _interfaceManager.app().use(
-            '/backoffice/api/docs',
+            '/services/api/docs',
             swaggerUi.serve,
             swaggerUi.setup(require('./swagger.json'))
         );

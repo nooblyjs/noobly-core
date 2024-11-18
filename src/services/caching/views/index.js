@@ -24,7 +24,7 @@ module.exports = function (moduleManager) {
             _interfaceManager.app().use(express.json())
 
             // Register the UI css and js to be used by all backoffice interfaces
-            _interfaceManager.registerSite('/backoffice/caching/', (moduleManager.core.common.modules.isModule() ? './node_modules/nooblyjs' : '.') + '/services/caching/views/pages');
+            _interfaceManager.registerSite('/services/caching/', (moduleManager.core.common.modules.isModule() ? './node_modules/nooblyjs' : '.') + '/services/caching/views/pages');
 
             // Raise the initalised event
             _viewManager.events.emit('core-viewmanager-initialise', 'success');

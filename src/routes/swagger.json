@@ -2,10 +2,10 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "The nooblyjs Server API's",
+    "title": "The nooblyjs Service API's",
     "description": "This project ecapsulates all the api methods for the nooblyjs server"
   },
-  "basePath": "/backoffice/",
+  "basePath": "/services/",
   "tags": [
     {
       "name": "Logging",
@@ -48,10 +48,12 @@
     "https", "http"
   ],
   "consumes": [
-    "application/json"
+    "application/json",
+    "application/text"
   ],
   "produces": [
-    "application/json"
+    "application/json",
+    "application/text"
   ],
   "security": [
     {
@@ -73,21 +75,18 @@
             "description": "Add the information you want to log",
             "required": true,
             "type": "string",
-            "default": "This is an INFO message",
-            "schema": {
-              "$ref": "#/definitions/logging"
-            }
+            "default": "This is an INFO message"
           }
         ],
+        "consumes": [
+          "application/text"
+        ],
         "produces": [
-          "application/json"
+          "application/text"
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/logging"
-            }
+            "description": "OK"
           }
         }
       }
@@ -104,20 +103,18 @@
             "name": "data",
             "in": "body",
             "description": "Add the information you want to log",
-            "schema": {
-              "$ref": "#/definitions/logging"
-            }
+            "default": "This is an WARN message"
           }
+        ],
+        "consumes": [
+          "application/text"
         ],
         "produces": [
           "application/text"
         ],
         "responses": {
           "200": {
-            "description": "success",
-            "schema": {
-              "$ref": "#/definitions/logging"
-            }
+            "description": "success"
           }
         }
       }
@@ -134,20 +131,36 @@
             "name": "data",
             "in": "body",
             "description": "Add the information you want to log",
-            "schema": {
-              "$ref": "#/definitions/logging"
-            }
+            "default": "This is an ERROR message"
           }
+        ],
+        "consumes": [
+          "application/text"
         ],
         "produces": [
           "application/text"
         ],
         "responses": {
           "200": {
-            "description": "success",
-            "schema": {
-              "$ref": "#/definitions/logging"
-            }
+            "description": "success"
+          }
+        }
+      }
+    },
+    "/logging/api/status": {
+      "get": {
+        "tags": [
+          "Logging"
+        ],
+        "summary": "Check the status of the endpoint",
+        "description": "This endpoint will check that the logging endpoint is working",
+        "parameters": [],
+        "produces": [
+          "application/text"
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
           }
         }
       }

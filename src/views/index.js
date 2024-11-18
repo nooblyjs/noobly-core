@@ -1,6 +1,7 @@
 'use strict';
 const events = require('events');
 const express = require('express');
+const fs = require('fs');
 
 /**
  * The nooblyjs core view manager
@@ -28,6 +29,11 @@ module.exports = function (moduleManager) {
         
         // Register the admin views
         _interfaceManager.registerSite('/backoffice', (moduleManager.core.common.modules.isModule() ? './node_modules/noobly-core' : '.') + '/src/views/backoffice')
+
+        if (fs.existsSync("application/index.html")){
+            // Register a default application
+            _interfaceManager.registerSite('/application',  'application')
+        }
 
         // If we are running as a standalone app then redirect too '/administrator'
         if (!moduleManager.core.common.modules.isModule()){
